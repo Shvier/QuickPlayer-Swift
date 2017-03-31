@@ -14,8 +14,8 @@
 		C0300DA91E8EA10B00029B8F /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C0300DA71E8EA10B00029B8F /* LaunchScreen.storyboard */; };
 		C0300DB41E8EA10B00029B8F /* QuickPlayer_ExampleTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0300DB31E8EA10B00029B8F /* QuickPlayer_ExampleTests.swift */; };
 		C0300DBF1E8EA10B00029B8F /* QuickPlayer_ExampleUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0300DBE1E8EA10B00029B8F /* QuickPlayer_ExampleUITests.swift */; };
-		C0D3C2611E8EACF000F0241D /* QuickPlayer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C0D3C2601E8EACF000F0241D /* QuickPlayer.framework */; };
-		C0D3C2621E8EAD0700F0241D /* QuickPlayer.framework in Resources */ = {isa = PBXBuildFile; fileRef = C0D3C2601E8EACF000F0241D /* QuickPlayer.framework */; };
+		C0D3C2EA1E8EB32A00F0241D /* QuickPlayer.framework in Resources */ = {isa = PBXBuildFile; fileRef = C0D3C2E81E8EB32300F0241D /* QuickPlayer.framework */; };
+		C0D3C2EC1E8EB37900F0241D /* QuickPlayer.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = C0D3C2E81E8EB32300F0241D /* QuickPlayer.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -35,6 +35,20 @@
 		};
 /* End PBXContainerItemProxy section */
 
+/* Begin PBXCopyFilesBuildPhase section */
+		C0D3C2ED1E8EB37900F0241D /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				C0D3C2EC1E8EB37900F0241D /* QuickPlayer.framework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
 /* Begin PBXFileReference section */
 		C0300D9B1E8EA10B00029B8F /* QuickPlayer-Example.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "QuickPlayer-Example.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		C0300D9E1E8EA10B00029B8F /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -49,7 +63,7 @@
 		C0300DBA1E8EA10B00029B8F /* QuickPlayer-ExampleUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "QuickPlayer-ExampleUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		C0300DBE1E8EA10B00029B8F /* QuickPlayer_ExampleUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuickPlayer_ExampleUITests.swift; sourceTree = "<group>"; };
 		C0300DC01E8EA10B00029B8F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		C0D3C2601E8EACF000F0241D /* QuickPlayer.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuickPlayer.framework; path = "../../../../Library/Developer/Xcode/DerivedData/QuickPlayer-Example-cdeyrnbujqzdapfwoggjrejihfzj/Build/Products/Debug-iphonesimulator/QuickPlayer.framework"; sourceTree = "<group>"; };
+		C0D3C2E81E8EB32300F0241D /* QuickPlayer.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuickPlayer.framework; path = "../QuickPlayer/QuickPlayer-Products/QuickPlayer.framework"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -57,7 +71,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				C0D3C2611E8EACF000F0241D /* QuickPlayer.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -133,7 +146,7 @@
 		C0D3C25F1E8EACEF00F0241D /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				C0D3C2601E8EACF000F0241D /* QuickPlayer.framework */,
+				C0D3C2E81E8EB32300F0241D /* QuickPlayer.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -148,6 +161,7 @@
 				C0300D971E8EA10B00029B8F /* Sources */,
 				C0300D981E8EA10B00029B8F /* Frameworks */,
 				C0300D991E8EA10B00029B8F /* Resources */,
+				C0D3C2ED1E8EB37900F0241D /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
@@ -248,7 +262,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				C0D3C2621E8EAD0700F0241D /* QuickPlayer.framework in Resources */,
+				C0D3C2EA1E8EB32A00F0241D /* QuickPlayer.framework in Resources */,
 				C0300DA91E8EA10B00029B8F /* LaunchScreen.storyboard in Resources */,
 				C0300DA61E8EA10B00029B8F /* Assets.xcassets in Resources */,
 				C0300DA41E8EA10B00029B8F /* Main.storyboard in Resources */,
@@ -432,12 +446,13 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = PGNG7584J8;
-				FRAMEWORK_SEARCH_PATHS = "\"$(SRCROOT)/../../../../Library/Developer/Xcode/DerivedData/QuickPlayer-Example-cdeyrnbujqzdapfwoggjrejihfzj/Build/Products/Debug-iphonesimulator/QuickPlayer.framework\"";
+				FRAMEWORK_SEARCH_PATHS = "\"$(SRCROOT)/../QuickPlayer/QuickPlayer-Products\"";
 				HEADER_SEARCH_PATHS = (
 					"\"$(SRCROOT)/../QuickPlayer/QuickPlayer.xcodeproj\"",
 					"\"$(SRCROOT)/../QuickPlayer/QuickPlayer\"",
 				);
 				INFOPLIST_FILE = "QuickPlayer-Example/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.Shvier.QuickPlayer-Example";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -450,12 +465,13 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = PGNG7584J8;
-				FRAMEWORK_SEARCH_PATHS = "\"$(SRCROOT)/../../../../Library/Developer/Xcode/DerivedData/QuickPlayer-Example-cdeyrnbujqzdapfwoggjrejihfzj/Build/Products/Debug-iphonesimulator/QuickPlayer.framework\"";
+				FRAMEWORK_SEARCH_PATHS = "\"$(SRCROOT)/../QuickPlayer/QuickPlayer-Products\"";
 				HEADER_SEARCH_PATHS = (
 					"\"$(SRCROOT)/../QuickPlayer/QuickPlayer.xcodeproj\"",
 					"\"$(SRCROOT)/../QuickPlayer/QuickPlayer\"",
 				);
 				INFOPLIST_FILE = "QuickPlayer-Example/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.Shvier.QuickPlayer-Example";
 				PRODUCT_NAME = "$(TARGET_NAME)";

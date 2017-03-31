@@ -1,0 +1,10 @@
+framework module QuickPlayer {
+  umbrella header "QuickPlayer.h"
+
+  export *
+  module * { export * }
+}
+
+module QuickPlayer.Swift {
+    header "QuickPlayer-Swift.h"
+}
