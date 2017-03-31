@@ -15,4 +15,3 @@ FOUNDATION_EXPORT double QuickPlayerVersionNumber;
 FOUNDATION_EXPORT const unsigned char QuickPlayerVersionString[];
 
 // In this header, you should import all the public headers of your framework using statements like #import <QuickPlayer/PublicHeader.h>
-#import <QuickPlayer/QuickPlayer.h>
