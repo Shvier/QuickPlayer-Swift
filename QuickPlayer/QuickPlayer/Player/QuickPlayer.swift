@@ -9,10 +9,6 @@
 import UIKit
 import AVFoundation
 
-//public protocol QuickPlayerDelegate: class {
-//    
-//}
-
 open class QuickPlayer: NSObject {
 
     private(set) public var player: AVPlayer!
