@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import QuickPlayer
 
 class ViewController: UIViewController {
 

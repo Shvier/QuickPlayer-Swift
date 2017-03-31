@@ -418,6 +418,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = PGNG7584J8;
+				FRAMEWORK_SEARCH_PATHS = "\"$(SRCROOT)/../../../../Library/Developer/Xcode/DerivedData/QuickPlayer-Example-cdeyrnbujqzdapfwoggjrejihfzj/Build/Products/Debug-iphonesimulator/QuickPlayer.framework\"";
 				INFOPLIST_FILE = "QuickPlayer-Example/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.Shvier.QuickPlayer-Example";
@@ -431,6 +432,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = PGNG7584J8;
+				FRAMEWORK_SEARCH_PATHS = "\"$(SRCROOT)/../../../../Library/Developer/Xcode/DerivedData/QuickPlayer-Example-cdeyrnbujqzdapfwoggjrejihfzj/Build/Products/Debug-iphonesimulator/QuickPlayer.framework\"";
 				INFOPLIST_FILE = "QuickPlayer-Example/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.Shvier.QuickPlayer-Example";
@@ -516,6 +518,7 @@
 				C0300DC51E8EA10B00029B8F /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		C0300DC61E8EA10B00029B8F /* Build configuration list for PBXNativeTarget "QuickPlayer-ExampleTests" */ = {
 			isa = XCConfigurationList;
@@ -524,6 +527,7 @@
 				C0300DC81E8EA10B00029B8F /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		C0300DC91E8EA10B00029B8F /* Build configuration list for PBXNativeTarget "QuickPlayer-ExampleUITests" */ = {
 			isa = XCConfigurationList;
@@ -532,6 +536,7 @@
 				C0300DCB1E8EA10B00029B8F /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
