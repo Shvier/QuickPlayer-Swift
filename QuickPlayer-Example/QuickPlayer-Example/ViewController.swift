@@ -8,6 +8,7 @@
 
 import UIKit
 import QuickPlayer
+import AVFoundation
 
 class ViewController: UIViewController {
 
@@ -15,6 +16,7 @@ class ViewController: UIViewController {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
         let player = QuickPlayer()
+        player.delegate = self
     }
 
     override func didReceiveMemoryWarning() {
@@ -22,6 +24,10 @@ class ViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
 
+
+}
+
+extension ViewController: QuickPlayerDelegate {
 
 }
 

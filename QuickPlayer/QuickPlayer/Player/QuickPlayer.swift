@@ -9,8 +9,19 @@
 import UIKit
 import AVFoundation
 
+//public protocol QuickPlayerDelegate: class {
+//    
+//}
+
 open class QuickPlayer: NSObject {
 
-    var player: AVPlayer!
+    private(set) public var player: AVPlayer!
+    private(set) public var currentTime: CGFloat = 0.0
+    private(set) public var playerView: UIView!
+    
+    public var coverUrl: URL!
+    public var videoUrl: URL!
+    
+    public weak var delegate: QuickPlayerDelegate?
     
 }

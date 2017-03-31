@@ -133,13 +133,22 @@ typedef unsigned int swift_uint4  __attribute__((__ext_vector_type__(4)));
 #endif
 #if defined(__has_feature) && __has_feature(modules)
 @import ObjectiveC;
+@import CoreGraphics;
+@import Foundation;
 #endif
 
 #pragma clang diagnostic ignored "-Wproperty-attribute-mismatch"
 #pragma clang diagnostic ignored "-Wduplicate-method-arg"
+@class AVPlayer;
+@class UIView;
 
 SWIFT_CLASS("_TtC11QuickPlayer11QuickPlayer")
 @interface QuickPlayer : NSObject
+@property (nonatomic, readonly, strong) AVPlayer * _Null_unspecified player;
+@property (nonatomic, readonly) CGFloat currentTime;
+@property (nonatomic, readonly, strong) UIView * _Null_unspecified playerView;
+@property (nonatomic, copy) NSURL * _Null_unspecified coverUrl;
+@property (nonatomic, copy) NSURL * _Null_unspecified videoUrl;
 - (nonnull instancetype)init OBJC_DESIGNATED_INITIALIZER;
 @end
 
