@@ -10,6 +10,7 @@
 		C0300DE01E8EA11D00029B8F /* QuickPlayer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C0300DD61E8EA11D00029B8F /* QuickPlayer.framework */; };
 		C0300DE51E8EA11D00029B8F /* QuickPlayerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0300DE41E8EA11D00029B8F /* QuickPlayerTests.swift */; };
 		C0300DE71E8EA11D00029B8F /* QuickPlayer.h in Headers */ = {isa = PBXBuildFile; fileRef = C0300DD91E8EA11D00029B8F /* QuickPlayer.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		C0300DF31E8EA98600029B8F /* QuickPlayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0300DF21E8EA98600029B8F /* QuickPlayer.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -29,6 +30,7 @@
 		C0300DDF1E8EA11D00029B8F /* QuickPlayerTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = QuickPlayerTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		C0300DE41E8EA11D00029B8F /* QuickPlayerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuickPlayerTests.swift; sourceTree = "<group>"; };
 		C0300DE61E8EA11D00029B8F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		C0300DF21E8EA98600029B8F /* QuickPlayer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QuickPlayer.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -71,6 +73,7 @@
 		C0300DD81E8EA11D00029B8F /* QuickPlayer */ = {
 			isa = PBXGroup;
 			children = (
+				C0300DF11E8EA94A00029B8F /* Player */,
 				C0300DD91E8EA11D00029B8F /* QuickPlayer.h */,
 				C0300DDA1E8EA11D00029B8F /* Info.plist */,
 			);
@@ -84,6 +87,14 @@
 				C0300DE61E8EA11D00029B8F /* Info.plist */,
 			);
 			path = QuickPlayerTests;
+			sourceTree = "<group>";
+		};
+		C0300DF11E8EA94A00029B8F /* Player */ = {
+			isa = PBXGroup;
+			children = (
+				C0300DF21E8EA98600029B8F /* QuickPlayer.swift */,
+			);
+			path = Player;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -149,6 +160,7 @@
 					C0300DD51E8EA11D00029B8F = {
 						CreatedOnToolsVersion = 8.3;
 						DevelopmentTeam = PGNG7584J8;
+						LastSwiftMigration = 0830;
 						ProvisioningStyle = Automatic;
 					};
 					C0300DDE1E8EA11D00029B8F = {
@@ -198,6 +210,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C0300DF31E8EA98600029B8F /* QuickPlayer.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -324,7 +337,9 @@
 		C0300DEB1E8EA11D00029B8F /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "";
+				DEAD_CODE_STRIPPING = YES;
 				DEFINES_MODULE = YES;
 				DEVELOPMENT_TEAM = PGNG7584J8;
 				DYLIB_COMPATIBILITY_VERSION = 1;
@@ -333,9 +348,12 @@
 				INFOPLIST_FILE = QuickPlayer/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				LINK_WITH_STANDARD_LIBRARIES = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = com.Shvier.QuickPlayer;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
+				STRIP_STYLE = debugging;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 3.0;
 			};
 			name = Debug;
@@ -343,7 +361,9 @@
 		C0300DEC1E8EA11D00029B8F /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "";
+				DEAD_CODE_STRIPPING = YES;
 				DEFINES_MODULE = YES;
 				DEVELOPMENT_TEAM = PGNG7584J8;
 				DYLIB_COMPATIBILITY_VERSION = 1;
@@ -352,9 +372,11 @@
 				INFOPLIST_FILE = QuickPlayer/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				LINK_WITH_STANDARD_LIBRARIES = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = com.Shvier.QuickPlayer;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
+				STRIP_STYLE = debugging;
 				SWIFT_VERSION = 3.0;
 			};
 			name = Release;
@@ -362,6 +384,7 @@
 		C0300DEE1E8EA11D00029B8F /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				DEVELOPMENT_TEAM = PGNG7584J8;
 				INFOPLIST_FILE = QuickPlayerTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
@@ -374,6 +397,7 @@
 		C0300DEF1E8EA11D00029B8F /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				DEVELOPMENT_TEAM = PGNG7584J8;
 				INFOPLIST_FILE = QuickPlayerTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
@@ -402,6 +426,7 @@
 				C0300DEC1E8EA11D00029B8F /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		C0300DED1E8EA11D00029B8F /* Build configuration list for PBXNativeTarget "QuickPlayerTests" */ = {
 			isa = XCConfigurationList;
@@ -410,6 +435,7 @@
 				C0300DEF1E8EA11D00029B8F /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
