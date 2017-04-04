@@ -20,4 +20,28 @@ open class QuickPlayer: NSObject {
     
     public weak var delegate: QuickPlayerDelegate?
     
+    public func preparePlay(coverUrl: URL) {
+        
+    }
+    
+    public func startPlay(videoUrl: URL) {
+        
+    }
+    
+    public func pause() {
+        
+    }
+    
+    public func resume() {
+        
+    }
+    
+    public func play() {
+        
+    }
+    
+    public func stop() {
+        
+    }
+    
 }

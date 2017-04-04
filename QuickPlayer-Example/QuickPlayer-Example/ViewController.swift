@@ -28,6 +28,6 @@ class ViewController: UIViewController {
 }
 
 extension ViewController: QuickPlayerDelegate {
-
+    
 }
 
