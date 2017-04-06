@@ -11,6 +11,7 @@
     case Paused
     case Failed
     case Playing
+    case Stopped
     case Finished
     case Unknown
 }
