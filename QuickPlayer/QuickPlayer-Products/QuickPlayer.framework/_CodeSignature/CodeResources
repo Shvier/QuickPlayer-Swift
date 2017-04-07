@@ -6,11 +6,11 @@
 	<dict>
 		<key>Headers/QuickPlayer-Swift.h</key>
 		<data>
-		PDsr0i2MSkXmias+mMIrkmPkGdY=
+		LncpeUrr+mgSaM9vT/H1M8Vf9z0=
 		</data>
 		<key>Headers/QuickPlayer.h</key>
 		<data>
-		w4/eyWnp/3n9Ret4eH0U0K9JFok=
+		lj3nA3bqHuU998XMSNDQppr81ek=
 		</data>
 		<key>Info.plist</key>
 		<data>
@@ -22,7 +22,7 @@
 		</data>
 		<key>Modules/QuickPlayer.swiftmodule/i386.swiftmodule</key>
 		<data>
-		dYgLdKXAVk1JY4ynHvIEo7XsnFU=
+		/PWZ6CO6q/EpI76rSKYoorEte8E=
 		</data>
 		<key>Modules/QuickPlayer.swiftmodule/x86_64.swiftdoc</key>
 		<data>
@@ -30,7 +30,7 @@
 		</data>
 		<key>Modules/QuickPlayer.swiftmodule/x86_64.swiftmodule</key>
 		<data>
-		SaRZWAVrUlRsmflip9mXcgLeRWs=
+		cafQl0J+zDZtn29GpNmQ1w4WdOg=
 		</data>
 		<key>Modules/module.modulemap</key>
 		<data>
@@ -43,22 +43,22 @@
 		<dict>
 			<key>hash</key>
 			<data>
-			PDsr0i2MSkXmias+mMIrkmPkGdY=
+			LncpeUrr+mgSaM9vT/H1M8Vf9z0=
 			</data>
 			<key>hash2</key>
 			<data>
-			Z5Hdl5KHs3wMlaeCmJDJnJNcW1+f5ZZFAaDqowAlM94=
+			wR+CW1gNs/ZGvC2+eDp3WrT/6+HPIo0qrf4rZpktvNQ=
 			</data>
 		</dict>
 		<key>Headers/QuickPlayer.h</key>
 		<dict>
 			<key>hash</key>
 			<data>
-			w4/eyWnp/3n9Ret4eH0U0K9JFok=
+			lj3nA3bqHuU998XMSNDQppr81ek=
 			</data>
 			<key>hash2</key>
 			<data>
-			FIRGCl8Sam0Bvt2IQ0nQqopGDV+MhIUlKRMrVwGUU/A=
+			Xa0Wxn1agBL5foZrh6GenRLjaAimFnEipZCf2tF/8x4=
 			</data>
 		</dict>
 		<key>Modules/QuickPlayer.swiftmodule/i386.swiftdoc</key>
@@ -76,11 +76,11 @@
 		<dict>
 			<key>hash</key>
 			<data>
-			dYgLdKXAVk1JY4ynHvIEo7XsnFU=
+			/PWZ6CO6q/EpI76rSKYoorEte8E=
 			</data>
 			<key>hash2</key>
 			<data>
-			9HdJo+4TlfIgQa9r5KqwlsL/vPW7FH1MWEmiu5OjuAs=
+			a0tVx/ADSsMq217I+X9lCibmdyaVUnhv6QZHI3BFQfs=
 			</data>
 		</dict>
 		<key>Modules/QuickPlayer.swiftmodule/x86_64.swiftdoc</key>
@@ -98,11 +98,11 @@
 		<dict>
 			<key>hash</key>
 			<data>
-			SaRZWAVrUlRsmflip9mXcgLeRWs=
+			cafQl0J+zDZtn29GpNmQ1w4WdOg=
 			</data>
 			<key>hash2</key>
 			<data>
-			4sHYBMuTc3OlZz5cCIDY8kb3l4aht3qmNHr0fJOIx9c=
+			Fjlq/CQhT1I/Wax7sjjZCgiUx31Q3xZKAkdhwbl+Oh4=
 			</data>
 		</dict>
 		<key>Modules/module.modulemap</key>

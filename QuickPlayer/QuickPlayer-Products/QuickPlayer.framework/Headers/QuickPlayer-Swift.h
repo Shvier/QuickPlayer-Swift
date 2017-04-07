@@ -139,17 +139,53 @@ typedef unsigned int swift_uint4  __attribute__((__ext_vector_type__(4)));
 
 #pragma clang diagnostic ignored "-Wproperty-attribute-mismatch"
 #pragma clang diagnostic ignored "-Wduplicate-method-arg"
+typedef SWIFT_ENUM(NSInteger, PlayerStatus) {
+  PlayerStatusReadyToPlay = 0,
+  PlayerStatusPaused = 1,
+  PlayerStatusFailed = 2,
+  PlayerStatusPlaying = 3,
+  PlayerStatusStopped = 4,
+  PlayerStatusFinished = 5,
+  PlayerStatusUnknown = 6,
+};
+
 @class AVPlayer;
 @class UIView;
+@class AVPlayerItem;
+@protocol QuickPlayerDelegate;
 
 SWIFT_CLASS("_TtC11QuickPlayer11QuickPlayer")
 @interface QuickPlayer : NSObject
-@property (nonatomic, readonly, strong) AVPlayer * _Null_unspecified player;
+@property (nonatomic, readonly, strong) AVPlayer * _Nullable player;
 @property (nonatomic, readonly) CGFloat currentTime;
 @property (nonatomic, readonly, strong) UIView * _Null_unspecified playerView;
+@property (nonatomic, readonly, strong) AVPlayerItem * _Nullable currentItem;
+@property (nonatomic, readonly) enum PlayerStatus status;
 @property (nonatomic, copy) NSURL * _Null_unspecified coverUrl;
 @property (nonatomic, copy) NSURL * _Null_unspecified videoUrl;
-- (nonnull instancetype)init OBJC_DESIGNATED_INITIALIZER;
+@property (nonatomic, weak) id <QuickPlayerDelegate> _Nullable delegate;
+- (void)preparePlayWithCoverUrl:(NSURL * _Nonnull)coverUrl;
+- (void)startPlayWithVideoUrl:(NSURL * _Nonnull)videoUrl;
+- (void)pause;
+- (void)resume;
+- (void)play;
+- (void)stop;
+- (void)replaceCurrentItemWithCoverUrl:(NSURL * _Nullable)coverUrl videoUrl:(NSURL * _Nullable)videoUrl;
+- (nonnull instancetype)initWithFrame:(CGRect)frame OBJC_DESIGNATED_INITIALIZER;
+- (void)observeValueForKeyPath:(NSString * _Nullable)keyPath ofObject:(id _Nullable)object change:(NSDictionary<NSKeyValueChangeKey, id> * _Nullable)change context:(void * _Nullable)context;
+- (nonnull instancetype)init SWIFT_UNAVAILABLE;
+@end
+
+
+SWIFT_PROTOCOL("_TtP11QuickPlayer19QuickPlayerDelegate_")
+@protocol QuickPlayerDelegate
+@optional
+- (void)playerReadyToPlayWithPlayer:(QuickPlayer * _Nonnull)player;
+- (void)playerPlayingVideoWithPlayer:(QuickPlayer * _Nonnull)player currentTime:(CGFloat)currentTime;
+- (void)playerChangedStatusWithStatus:(enum PlayerStatus)status;
+- (void)playerFinishedWithPlayer:(QuickPlayer * _Nonnull)player;
+- (void)playerCachedWithPlayer:(QuickPlayer * _Nonnull)player cahceProgress:(CGFloat)cahceProgress;
+- (void)playerCacheFailedWithPlayer:(QuickPlayer * _Nonnull)player error:(NSError * _Nonnull)error;
 @end
 
 #pragma clang diagnostic pop
