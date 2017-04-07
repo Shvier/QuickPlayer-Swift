@@ -11,12 +11,16 @@ import QuickPlayer
 import AVFoundation
 
 class ViewController: UIViewController {
+    
+    var player: QuickPlayer!
 
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
-        let player = QuickPlayer(frame: CGRect.zero)
-        player.delegate = self
+        player = QuickPlayer(frame: view.frame)
+//        player.delegate = self
+        view.addSubview(player.playerView)
+        player.startPlay(videoUrl: URL(fileURLWithPath: Bundle.main.path(forResource: "test", ofType: "m4v")!))
     }
 
     override func didReceiveMemoryWarning() {

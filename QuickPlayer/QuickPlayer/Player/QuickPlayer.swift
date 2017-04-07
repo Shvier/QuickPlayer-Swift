@@ -63,6 +63,7 @@ open class QuickPlayer: NSObject {
         delegate?.playerChangedStatus!(status: .Playing)
         status = .Playing
         player.seek(to: kCMTimeZero)
+        player.play()
     }
     
     public func stop() {
@@ -100,8 +101,8 @@ open class QuickPlayer: NSObject {
     }
     
     deinit {
-        removeObserver(self, forKeyPath: "player.currentItem.loadedTimeRanges")
-        removeObserver(self, forKeyPath: "player.status")
+        NotificationCenter.default.removeObserver(self, forKeyPath: #keyPath(AVPlayer.currentItem.loadedTimeRanges))
+        NotificationCenter.default.removeObserver(self, forKeyPath: #keyPath(AVPlayer.rate))
         NotificationCenter.default.removeObserver(self, name: NSNotification.Name.AVPlayerItemDidPlayToEndTime, object: nil)
         if let observer = playbackTimeObserver {
             player.removeTimeObserver(observer)
@@ -117,8 +118,8 @@ open class QuickPlayer: NSObject {
     }
     
     func addObserverForPlayer() {
-        addObserver(self, forKeyPath: "player.currentItem.loadedTimeRanges", options: [.old, .new], context: nil)
-        addObserver(self, forKeyPath: "player.status", options: [.old, .new], context: nil)
+        NotificationCenter.default.addObserver(self, forKeyPath: #keyPath(AVPlayer.currentItem.loadedTimeRanges), options: [.old, .new], context: nil)
+        NotificationCenter.default.addObserver(self, forKeyPath: #keyPath(AVPlayer.status), options: [.old, .new], context: nil)
         NotificationCenter.default.addObserver(forName: NSNotification.Name.AVPlayerItemDidPlayToEndTime, object: nil, queue: OperationQueue.current) { [unowned self] (notification) in
             if notification.object as? AVPlayerItem == self.player.currentItem {
                 
@@ -149,7 +150,7 @@ open class QuickPlayer: NSObject {
     }
     
     open override func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey : Any]?, context: UnsafeMutableRawPointer?) {
-        if keyPath == "player.status" {
+        if keyPath == "AVPlayer.status" {
             let status: AVPlayerStatus = AVPlayerStatus(rawValue: ((object as? NSNumber)?.intValue)!)!
             switch status {
             case .readyToPlay:
@@ -159,7 +160,7 @@ open class QuickPlayer: NSObject {
                     self.currentTime = currentSecond
                     if currentSecond > 0 && !(self.coverView?.isHidden)! {
                         self.delegate?.playerChangedStatus!(status: .Playing)
-                        DispatchQueue.main.asyncAfter(deadline: .now() + 0.2, execute: { 
+                        DispatchQueue.main.asyncAfter(deadline: .now() + 0.2, execute: {
                             self.coverView?.isHidden = true
                         })
                     }
