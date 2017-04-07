@@ -17,6 +17,7 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
+        addObserver(self, forKeyPath: #keyPath(player), options: [.initial, .old, .new], context: nil)
         player = QuickPlayer(frame: view.frame)
 //        player.delegate = self
         view.addSubview(player.playerView)
@@ -26,6 +27,10 @@ class ViewController: UIViewController {
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
+    }
+    
+    override func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey : Any]?, context: UnsafeMutableRawPointer?) {
+        
     }
 
 }

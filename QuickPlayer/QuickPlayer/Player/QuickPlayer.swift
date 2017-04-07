@@ -101,8 +101,8 @@ open class QuickPlayer: NSObject {
     }
     
     deinit {
-        NotificationCenter.default.removeObserver(self, forKeyPath: #keyPath(AVPlayer.currentItem.loadedTimeRanges))
-        NotificationCenter.default.removeObserver(self, forKeyPath: #keyPath(AVPlayer.rate))
+        NotificationCenter.default.removeObserver(self, forKeyPath: #keyPath(player.currentItem.loadedTimeRanges))
+        NotificationCenter.default.removeObserver(self, forKeyPath: #keyPath(player.status))
         NotificationCenter.default.removeObserver(self, name: NSNotification.Name.AVPlayerItemDidPlayToEndTime, object: nil)
         if let observer = playbackTimeObserver {
             player.removeTimeObserver(observer)
@@ -118,8 +118,8 @@ open class QuickPlayer: NSObject {
     }
     
     func addObserverForPlayer() {
-        NotificationCenter.default.addObserver(self, forKeyPath: #keyPath(AVPlayer.currentItem.loadedTimeRanges), options: [.old, .new], context: nil)
-        NotificationCenter.default.addObserver(self, forKeyPath: #keyPath(AVPlayer.status), options: [.old, .new], context: nil)
+        addObserver(self, forKeyPath: #keyPath(player.currentItem.loadedTimeRanges), options: [.old, .new], context: nil)
+        addObserver(self, forKeyPath: #keyPath(player.status), options: [.old, .new, .initial], context: nil)
         NotificationCenter.default.addObserver(forName: NSNotification.Name.AVPlayerItemDidPlayToEndTime, object: nil, queue: OperationQueue.current) { [unowned self] (notification) in
             if notification.object as? AVPlayerItem == self.player.currentItem {
                 
@@ -150,8 +150,8 @@ open class QuickPlayer: NSObject {
     }
     
     open override func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey : Any]?, context: UnsafeMutableRawPointer?) {
-        if keyPath == "AVPlayer.status" {
-            let status: AVPlayerStatus = AVPlayerStatus(rawValue: ((object as? NSNumber)?.intValue)!)!
+        if keyPath == "player.status" {
+            let status: AVPlayerStatus = AVPlayerStatus(rawValue: ((change![.newKey] as! NSNumber).intValue))!
             switch status {
             case .readyToPlay:
                 self.delegate?.playerChangedStatus!(status: .ReadyToPlay)
