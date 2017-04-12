@@ -19,6 +19,7 @@ open class QuickPlayer: NSObject {
     
     public var coverUrl: URL!
     public var videoUrl: URL!
+    public var timeFrequency: Float64 = 1.0
     
     public weak var delegate: QuickPlayerDelegate?
     
@@ -101,16 +102,10 @@ open class QuickPlayer: NSObject {
     }
     
     deinit {
-        NotificationCenter.default.removeObserver(self, forKeyPath: #keyPath(player.currentItem.loadedTimeRanges))
-        NotificationCenter.default.removeObserver(self, forKeyPath: #keyPath(player.status))
-        NotificationCenter.default.removeObserver(self, name: NSNotification.Name.AVPlayerItemDidPlayToEndTime, object: nil)
-        if let observer = playbackTimeObserver {
-            player?.removeTimeObserver(observer)
-        }
+        destoryPlayer()
     }
     
     func initialize() {
-        self.addObserverForPlayer()
         playerView = ({
             let view = UIView(frame: frame)
             return view
@@ -118,8 +113,8 @@ open class QuickPlayer: NSObject {
     }
     
     func addObserverForPlayer() {
-        addObserver(self, forKeyPath: #keyPath(player.currentItem.loadedTimeRanges), options: [.new], context: nil)
-        addObserver(self, forKeyPath: #keyPath(player.status), options: [.new, .initial], context: nil)
+        addObserver(self, forKeyPath: #keyPath(player.currentItem.loadedTimeRanges), options: [.initial, .old, .new], context: nil)
+        addObserver(self, forKeyPath: #keyPath(player.status), options: [.initial, .old, .new], context: nil)
         NotificationCenter.default.addObserver(forName: NSNotification.Name.AVPlayerItemDidPlayToEndTime, object: nil, queue: OperationQueue.current) { [unowned self] (notification) in
             if notification.object as? AVPlayerItem == self.player?.currentItem {
                 
@@ -139,6 +134,7 @@ open class QuickPlayer: NSObject {
     func configPlayer() {
         player = ({
             let player = AVPlayer(playerItem: self.currentItem)
+            player.volume = 0
             return player
         }())
         playerLayer = ({
@@ -147,29 +143,32 @@ open class QuickPlayer: NSObject {
             return playerLayer
         }())
         playerView.layer.insertSublayer(playerLayer!, above: playerView.layer)
+        addObserverForPlayer()
     }
     
     open override func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey : Any]?, context: UnsafeMutableRawPointer?) {
+        if player == nil {
+            return
+        }
         if keyPath == "player.status" {
             let status: AVPlayerStatus = AVPlayerStatus(rawValue: ((change![NSKeyValueChangeKey.kindKey] as! NSNumber).intValue))!
             switch status {
             case .readyToPlay:
                 self.delegate?.playerChangedStatus!(status: .ReadyToPlay)
-                self.playbackTimeObserver = player?.addPeriodicTimeObserver(forInterval: CMTimeMake(1, 1), queue: DispatchQueue.main, using: { (time) in
-                    print(time)
+                self.playbackTimeObserver = self.player?.addPeriodicTimeObserver(forInterval: CMTimeMakeWithSeconds(timeFrequency, Int32(NSEC_PER_SEC)), queue: nil, using: { [unowned self] (time) in
+                    let currentSecond = CGFloat((self.player?.currentItem?.currentTime().value)!)/CGFloat((self.player?.currentItem?.currentTime().timescale)!)
+                    self.currentTime = currentSecond
+                    if currentSecond > 0 {
+                        if self.coverView != nil && !((self.coverView?.isHidden)!) {
+                            DispatchQueue.main.asyncAfter(deadline: .now() + 0.2, execute: {
+                                self.coverView?.isHidden = true
+                            })
+                        }
+                        self.delegate?.playerChangedStatus!(status: .Playing)
+                    }
+                    self.delegate?.playerPlayingVideo!(player: self, currentTime: currentSecond)
+
                 })
-//                playbackTimeObserver = player?.addPeriodicTimeObserver(forInterval: CMTimeMakeWithSeconds(1.0/30.0, Int32(NSEC_PER_SEC)), queue: DispatchQueue.main, using: { [unowned self] (time) in
-//                    let currentSecond = CGFloat((self.player?.currentItem?.currentTime().value)!)/CGFloat((self.player?.currentItem?.currentTime().timescale)!)
-//                    self.currentTime = currentSecond
-//                    print(currentSecond)
-//                    if currentSecond > 0 && !(self.coverView?.isHidden)! {
-//                        self.delegate?.playerChangedStatus!(status: .Playing)
-//                        DispatchQueue.main.asyncAfter(deadline: .now() + 0.2, execute: {
-//                            self.coverView?.isHidden = true
-//                        })
-//                    }
-//                    self.delegate?.playerPlayingVideo!(player: self, currentTime: currentSecond)
-//                })
                 break
             case .unknown:
                 self.delegate?.playerChangedStatus!(status: .Unknown)
@@ -179,6 +178,23 @@ open class QuickPlayer: NSObject {
                 break
             }
         }
+    }
+    
+    func destoryObserver() {
+        NotificationCenter.default.removeObserver(self, forKeyPath: #keyPath(player.currentItem.loadedTimeRanges))
+        NotificationCenter.default.removeObserver(self, forKeyPath: #keyPath(player.status))
+        NotificationCenter.default.removeObserver(self, name: NSNotification.Name.AVPlayerItemDidPlayToEndTime, object: nil)
+        if let observer = playbackTimeObserver {
+            player?.removeTimeObserver(observer)
+        }
+    }
+    
+    func destoryPlayer() {
+        destoryObserver()
+        player?.pause()
+        player = nil
+        playerLayer?.removeFromSuperlayer()
+        playerLayer = nil
     }
     
 }
