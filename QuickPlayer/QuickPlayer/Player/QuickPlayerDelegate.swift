@@ -18,7 +18,6 @@
 
 @objc public protocol QuickPlayerDelegate: class {
 
-    @objc optional func playerReadyToPlay(player: QuickPlayer)
     @objc optional func playerPlayingVideo(player: QuickPlayer, currentTime: CGFloat)
     @objc optional func playerChangedStatus(status: PlayerStatus)
     @objc optional func playerFinished(player: QuickPlayer)

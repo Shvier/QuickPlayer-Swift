@@ -17,11 +17,12 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
-        addObserver(self, forKeyPath: #keyPath(player), options: [.initial, .old, .new], context: nil)
         player = QuickPlayer(frame: view.frame)
-//        player.delegate = self
         view.addSubview(player.playerView)
         player.startPlay(videoUrl: URL(fileURLWithPath: Bundle.main.path(forResource: "test", ofType: "m4v")!))
+        DispatchQueue.main.asyncAfter(deadline: .now() + 10) { [unowned self] in
+            self.player.replaceCurrentItem(coverUrl: nil, videoUrl: URL(fileURLWithPath: Bundle.main.path(forResource: "test", ofType: "m4v")!))
+        }
     }
 
     override func didReceiveMemoryWarning() {
@@ -29,10 +30,6 @@ class ViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
-    override func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey : Any]?, context: UnsafeMutableRawPointer?) {
-        
-    }
-
 }
 
 extension ViewController: QuickPlayerDelegate {

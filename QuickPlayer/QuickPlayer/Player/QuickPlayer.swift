@@ -11,23 +11,39 @@ import AVFoundation
 
 open class QuickPlayer: NSObject {
 
+    // AVPlayer
     private(set) public var player: AVPlayer?
+    // video current play time
     private(set) public var currentTime: CGFloat = 0.0
+    // view rendering video
     private(set) public var playerView: UIView!
+    // current video item
     private(set) public var currentItem: AVPlayerItem?
+    // current player status
     private(set) public var status: PlayerStatus = .Stopped
+    // cover view url
+    private(set) public var coverUrl: URL!
+    // video url
+    private(set) public var videoUrl: URL!
     
-    public var coverUrl: URL!
-    public var videoUrl: URL!
+    // current time callback frequency
     public var timeFrequency: Float64 = 1.0
     
+    // player delegate, jump to QuickPlayerDelegate.Swift
     public weak var delegate: QuickPlayerDelegate?
     
+    // frame of player view
     var frame: CGRect = CGRect.zero
+    // current time observer
     var playbackTimeObserver: Any?
+    // cover image
     var coverView: UIImageView?
+    // AVPlayer layer
     var playerLayer: AVPlayerLayer?
     
+    /// if you like to fix a brief black screen before playing for video, just set a cover image
+    ///
+    /// - Parameter coverUrl: cover image url
     public func preparePlay(coverUrl: URL) {
         self.coverUrl = coverUrl
         if coverView == nil {
@@ -39,6 +55,9 @@ open class QuickPlayer: NSObject {
         }
     }
     
+    /// set a url for video
+    ///
+    /// - Parameter videoUrl: video url
     public func startPlay(videoUrl: URL) {
         if player == nil {
             self.videoUrl = videoUrl
@@ -48,18 +67,21 @@ open class QuickPlayer: NSObject {
         self.play()
     }
     
+    /// pause player
     public func pause() {
         delegate?.playerChangedStatus!(status: .Paused)
         status = .Paused
         player?.pause()
     }
     
+    /// resume Paused status
     public func resume() {
         delegate?.playerChangedStatus!(status: .Playing)
         status = .Playing
         player?.play()
     }
     
+    /// play again from beginning time
     public func play() {
         delegate?.playerChangedStatus!(status: .Playing)
         status = .Playing
@@ -67,6 +89,7 @@ open class QuickPlayer: NSObject {
         player?.play()
     }
     
+    /// stop playing, the observer will be released when this object deinit
     public func stop() {
         delegate?.playerChangedStatus!(status: .Stopped)
         status = .Stopped
@@ -76,6 +99,11 @@ open class QuickPlayer: NSObject {
         player?.replaceCurrentItem(with: nil)
     }
     
+    /// replace current item with another video
+    ///
+    /// - Parameters:
+    ///   - coverUrl: if you don't like a cover image, leave it alone
+    ///   - videoUrl: video url
     public func replaceCurrentItem(coverUrl: URL?, videoUrl: URL?) {
         if coverUrl != nil {
             self.coverUrl = coverUrl!
@@ -95,6 +123,9 @@ open class QuickPlayer: NSObject {
         }
     }
     
+    /// init
+    ///
+    /// - Parameter frame: frame of player view
     public init(frame: CGRect) {
         super.init()
         self.frame = frame
@@ -117,7 +148,8 @@ open class QuickPlayer: NSObject {
         addObserver(self, forKeyPath: #keyPath(player.status), options: [.initial, .old, .new], context: nil)
         NotificationCenter.default.addObserver(forName: NSNotification.Name.AVPlayerItemDidPlayToEndTime, object: nil, queue: OperationQueue.current) { [unowned self] (notification) in
             if notification.object as? AVPlayerItem == self.player?.currentItem {
-                
+                self.delegate?.playerFinished!(player: self)
+                self.delegate?.playerChangedStatus!(status: .Stopped)
             }
         }
     }
@@ -167,7 +199,6 @@ open class QuickPlayer: NSObject {
                         self.delegate?.playerChangedStatus!(status: .Playing)
                     }
                     self.delegate?.playerPlayingVideo!(player: self, currentTime: currentSecond)
-
                 })
                 break
             case .unknown:
