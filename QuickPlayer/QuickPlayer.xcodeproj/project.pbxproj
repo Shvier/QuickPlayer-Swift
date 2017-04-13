@@ -29,8 +29,8 @@
 		C0300DE51E8EA11D00029B8F /* QuickPlayerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0300DE41E8EA11D00029B8F /* QuickPlayerTests.swift */; };
 		C0300DE71E8EA11D00029B8F /* QuickPlayer.h in Headers */ = {isa = PBXBuildFile; fileRef = C0300DD91E8EA11D00029B8F /* QuickPlayer.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		C0300DF31E8EA98600029B8F /* QuickPlayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0300DF21E8EA98600029B8F /* QuickPlayer.swift */; };
-		C0A862041E9F9788001403E3 /* QuickResourceManagerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0A862031E9F9788001403E3 /* QuickResourceManagerDelegate.swift */; };
-		C0D3C2EF1E8EBA6E00F0241D /* QuickPlayerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0D3C2EE1E8EBA6E00F0241D /* QuickPlayerDelegate.swift */; };
+		C0A862041E9F9788001403E3 /* QuickResourceManagerProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0A862031E9F9788001403E3 /* QuickResourceManagerProtocol.swift */; };
+		C0D3C2EF1E8EBA6E00F0241D /* QuickPlayerProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0D3C2EE1E8EBA6E00F0241D /* QuickPlayerProtocol.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -55,8 +55,8 @@
 		C0300DE41E8EA11D00029B8F /* QuickPlayerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuickPlayerTests.swift; sourceTree = "<group>"; };
 		C0300DE61E8EA11D00029B8F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		C0300DF21E8EA98600029B8F /* QuickPlayer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QuickPlayer.swift; sourceTree = "<group>"; };
-		C0A862031E9F9788001403E3 /* QuickResourceManagerDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QuickResourceManagerDelegate.swift; sourceTree = "<group>"; };
-		C0D3C2EE1E8EBA6E00F0241D /* QuickPlayerDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QuickPlayerDelegate.swift; sourceTree = "<group>"; };
+		C0A862031E9F9788001403E3 /* QuickResourceManagerProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QuickResourceManagerProtocol.swift; sourceTree = "<group>"; };
+		C0D3C2EE1E8EBA6E00F0241D /* QuickPlayerProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QuickPlayerProtocol.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -91,7 +91,7 @@
 			children = (
 				C00109411E9E196500FE839B /* QuickResourceManager.swift */,
 				C00109431E9E197800FE839B /* QuickSessionTask.swift */,
-				C0A862031E9F9788001403E3 /* QuickResourceManagerDelegate.swift */,
+				C0A862031E9F9788001403E3 /* QuickResourceManagerProtocol.swift */,
 			);
 			path = ResourceManager;
 			sourceTree = "<group>";
@@ -148,7 +148,7 @@
 			isa = PBXGroup;
 			children = (
 				C0300DF21E8EA98600029B8F /* QuickPlayer.swift */,
-				C0D3C2EE1E8EBA6E00F0241D /* QuickPlayerDelegate.swift */,
+				C0D3C2EE1E8EBA6E00F0241D /* QuickPlayerProtocol.swift */,
 			);
 			path = Player;
 			sourceTree = "<group>";
@@ -290,11 +290,11 @@
 			files = (
 				C001093C1E9E18AB00FE839B /* QuickCacheHandle.swift in Sources */,
 				C00109401E9E192500FE839B /* URL+Extension.swift in Sources */,
-				C0A862041E9F9788001403E3 /* QuickResourceManagerDelegate.swift in Sources */,
+				C0A862041E9F9788001403E3 /* QuickResourceManagerProtocol.swift in Sources */,
 				C00109441E9E197800FE839B /* QuickSessionTask.swift in Sources */,
 				C0300DF31E8EA98600029B8F /* QuickPlayer.swift in Sources */,
 				C00109421E9E196500FE839B /* QuickResourceManager.swift in Sources */,
-				C0D3C2EF1E8EBA6E00F0241D /* QuickPlayerDelegate.swift in Sources */,
+				C0D3C2EF1E8EBA6E00F0241D /* QuickPlayerProtocol.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

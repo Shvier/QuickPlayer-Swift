@@ -1,5 +1,5 @@
 //
-//  QuickResourceManagerDelegate.swift
+//  QuickResourceManagerProtocol.swift
 //  QuickPlayer
 //
 //  Created by Shvier on 13/04/2017.

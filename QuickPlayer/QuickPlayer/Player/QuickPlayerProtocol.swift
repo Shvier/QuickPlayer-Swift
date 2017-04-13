@@ -1,5 +1,5 @@
 //
-//  QuickPlayerDelegate.swift
+//  QuickPlayerProtocol.swift
 //  QuickPlayer
 //
 //  Created by Shvier on 01/04/2017.
