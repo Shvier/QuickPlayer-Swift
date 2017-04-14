@@ -7,3 +7,11 @@
 //
 
 import Foundation
+
+@objc public protocol QuickResourceManagerDelegate: class {
+    
+    @objc optional func resourceManagerCacheProgress(manager: QuickResourceManager, progress: CGFloat)
+    @objc optional func resourceManagerFailLoading(manager: QuickResourceManager, error: Error)
+    @objc optional func resourceManagerFinishLoading(manager: QuickResourceManager)
+    
+}
