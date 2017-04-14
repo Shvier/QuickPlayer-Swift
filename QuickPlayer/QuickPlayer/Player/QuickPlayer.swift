@@ -40,6 +40,10 @@ open class QuickPlayer: NSObject {
     var coverView: UIImageView?
     // AVPlayer layer
     var playerLayer: AVPlayerLayer?
+    // cache resource manager
+    var resourceManager: QuickResourceManager?
+    // cache filename
+    var filename: String?
     
     /// if you like to fix a brief black screen before playing for video, just set a cover image
     ///
@@ -59,12 +63,33 @@ open class QuickPlayer: NSObject {
     ///
     /// - Parameter videoUrl: video url
     public func startPlay(videoUrl: URL) {
+        self.videoUrl = videoUrl
+        self.filename = videoUrl.path.components(separatedBy: "/").last
+        if videoUrl.absoluteString.hasPrefix("http") {
+            let cacheFilePath = QuickCacheHandle.cacheFileExists(filename: filename!)
+            if cacheFilePath != nil {
+                let url = URL(fileURLWithPath: cacheFilePath!)
+                currentItem = AVPlayerItem(url: url)
+            } else {
+                resourceManager = QuickResourceManager(filename: filename!)
+                resourceManager?.delegate = self
+                let asset = AVURLAsset(url: videoUrl)
+                currentItem = AVPlayerItem(asset: asset)
+            }
+        } else {
+            currentItem = AVPlayerItem(url: videoUrl)
+        }
         if player == nil {
             self.videoUrl = videoUrl
             currentItem = AVPlayerItem(url: videoUrl)
             self.configPlayer()
         }
         self.play()
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) { 
+            if self.currentTime <= 0 {
+                // play waiting indicator
+            }
+        }
     }
     
     /// pause player
@@ -97,6 +122,7 @@ open class QuickPlayer: NSObject {
         playerLayer?.removeFromSuperlayer()
         player?.pause()
         player?.replaceCurrentItem(with: nil)
+        resourceManager?.stopLoading()
     }
     
     /// replace current item with another video
@@ -227,5 +253,9 @@ open class QuickPlayer: NSObject {
         playerLayer?.removeFromSuperlayer()
         playerLayer = nil
     }
+    
+}
+
+extension QuickPlayer: QuickResourceManagerDelegate {
     
 }

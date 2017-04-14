@@ -50,6 +50,15 @@ public class QuickCacheHandle: NSObject {
         }
     }
     
+    static open func cacheFileExists(filename: String) -> String? {
+        let cacheFilePath = "\(QuickCacheHandle.cacheFolderPath())/\(filename).mp4"
+        if fileManager.fileExists(atPath: cacheFilePath) {
+            print("cache found: \(cacheFilePath)")
+            return cacheFilePath
+        }
+        return nil
+    }
+    
     static open func clearCache() {
         do {
             try fileManager.removeItem(atPath: QuickCacheHandle.cacheFolderPath())
