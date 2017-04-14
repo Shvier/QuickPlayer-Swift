@@ -15,8 +15,8 @@ public class QuickSessionTask: NSObject {
     public weak var delegate: QuickSessionTaskDelegate?
     
     var requestURL: URL?
-    var requestOffset: Int = 0
-    var fileLength: Int = 0
+    var requestOffset: Int64 = 0
+    var fileLength: Int64 = 0
     var cacheLength: Int = 0
     var allowCache: Bool = true
     var cancel: Bool {
@@ -65,7 +65,7 @@ extension QuickSessionTask: URLSessionDataDelegate {
         let httpResponse = response as! HTTPURLResponse
         let contentRange = httpResponse.allHeaderFields["Content-Rage"] as! String
         let fileLength = contentRange.components(separatedBy: "/").last
-        self.fileLength = Int.init(fileLength!)! > 0 ? Int.init(fileLength!)! : Int.init(response.expectedContentLength)
+        self.fileLength = Int64.init(fileLength!)! > 0 ? Int64.init(fileLength!)! : Int64.init(response.expectedContentLength)
         delegate?.requestTaskDidReceivedResponse!()
     }
     
