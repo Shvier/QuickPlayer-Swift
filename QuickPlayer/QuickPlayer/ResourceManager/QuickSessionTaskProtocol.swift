@@ -10,4 +10,10 @@ import Foundation
 
 @objc public protocol QuickSessionTaskDelegate {
     
+    @objc func requestTaskDidUpdateCache()
+    
+    @objc optional func requestTaskDidReceivedResponse()
+    @objc optional func requestTaskDidFinishedLoading()
+    @objc optional func requestTaskDidFailed(error: Error)
+    
 }

@@ -25,6 +25,7 @@
 		C00109401E9E192500FE839B /* URL+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = C001093F1E9E192500FE839B /* URL+Extension.swift */; };
 		C00109421E9E196500FE839B /* QuickResourceManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C00109411E9E196500FE839B /* QuickResourceManager.swift */; };
 		C00109441E9E197800FE839B /* QuickSessionTask.swift in Sources */ = {isa = PBXBuildFile; fileRef = C00109431E9E197800FE839B /* QuickSessionTask.swift */; };
+		C01923461EA09EF6001E86F6 /* QuickSessionTaskProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = C01923451EA09EF6001E86F6 /* QuickSessionTaskProtocol.swift */; };
 		C0300DE01E8EA11D00029B8F /* QuickPlayer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C0300DD61E8EA11D00029B8F /* QuickPlayer.framework */; };
 		C0300DE51E8EA11D00029B8F /* QuickPlayerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0300DE41E8EA11D00029B8F /* QuickPlayerTests.swift */; };
 		C0300DE71E8EA11D00029B8F /* QuickPlayer.h in Headers */ = {isa = PBXBuildFile; fileRef = C0300DD91E8EA11D00029B8F /* QuickPlayer.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -48,6 +49,7 @@
 		C001093F1E9E192500FE839B /* URL+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "URL+Extension.swift"; sourceTree = "<group>"; };
 		C00109411E9E196500FE839B /* QuickResourceManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QuickResourceManager.swift; sourceTree = "<group>"; };
 		C00109431E9E197800FE839B /* QuickSessionTask.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QuickSessionTask.swift; sourceTree = "<group>"; };
+		C01923451EA09EF6001E86F6 /* QuickSessionTaskProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QuickSessionTaskProtocol.swift; sourceTree = "<group>"; };
 		C0300DD61E8EA11D00029B8F /* QuickPlayer.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = QuickPlayer.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		C0300DD91E8EA11D00029B8F /* QuickPlayer.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = QuickPlayer.h; sourceTree = "<group>"; };
 		C0300DDA1E8EA11D00029B8F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -92,6 +94,7 @@
 				C00109411E9E196500FE839B /* QuickResourceManager.swift */,
 				C00109431E9E197800FE839B /* QuickSessionTask.swift */,
 				C0A862031E9F9788001403E3 /* QuickResourceManagerProtocol.swift */,
+				C01923451EA09EF6001E86F6 /* QuickSessionTaskProtocol.swift */,
 			);
 			path = ResourceManager;
 			sourceTree = "<group>";
@@ -288,6 +291,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C01923461EA09EF6001E86F6 /* QuickSessionTaskProtocol.swift in Sources */,
 				C001093C1E9E18AB00FE839B /* QuickCacheHandle.swift in Sources */,
 				C00109401E9E192500FE839B /* URL+Extension.swift in Sources */,
 				C0A862041E9F9788001403E3 /* QuickResourceManagerProtocol.swift in Sources */,
