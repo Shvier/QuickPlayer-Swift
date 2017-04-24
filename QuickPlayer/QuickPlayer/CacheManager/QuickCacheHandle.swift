@@ -14,8 +14,8 @@ import UIKit
 public class QuickCacheHandle: NSObject {
     
     static let fileManager = FileManager.default
-    static let cachePath = NSHomeDirectory().appending("/Library/Caches/\(Bundle.main.bundleIdentifier!)")
-
+    static var cachePath: String = QuickPlayerManager.sharedInstance.cachePath
+    
     static open func createTempFile(filename: String) -> Bool {
         let filePath = QuickCacheHandle.tempFilePath(filename: filename)
         if fileManager.fileExists(atPath: filePath) {
