@@ -83,4 +83,12 @@ public class QuickCacheHandle: NSObject {
         return cachePath
     }
     
+    static open func clearCache(filename: String) {
+        do {
+            try fileManager.removeItem(atPath: QuickCacheHandle.tempFilePath(filename: filename))
+        } catch let error {
+            print("clear \(filename) cache error: \(error)")
+        }
+    }
+    
 }

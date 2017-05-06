@@ -41,7 +41,7 @@ open class QuickPlayer: NSObject {
     // AVPlayer layer
     var playerLayer: AVPlayerLayer?
     // cache resource manager
-    var resourceManager: QuickResourceManager?
+    var resourceLoader: QuickPlayerResourceLoader?
     // cache filename
     var filename: String?
     
@@ -71,8 +71,8 @@ open class QuickPlayer: NSObject {
                 let url = URL(fileURLWithPath: cacheFilePath!)
                 currentItem = AVPlayerItem(url: url)
             } else {
-                resourceManager = QuickResourceManager(filename: filename!)
-                resourceManager?.delegate = self
+                resourceLoader = QuickPlayerResourceLoader(filename: filename!)
+//                resourceLoader?.delegate = self
                 let asset = AVURLAsset(url: videoUrl)
                 currentItem = AVPlayerItem(asset: asset)
             }
@@ -122,7 +122,7 @@ open class QuickPlayer: NSObject {
         playerLayer?.removeFromSuperlayer()
         player?.pause()
         player?.replaceCurrentItem(with: nil)
-        resourceManager?.stopLoading()
+//        resourceManager?.stopLoading()
     }
     
     /// replace current item with another video
@@ -256,6 +256,6 @@ open class QuickPlayer: NSObject {
     
 }
 
-extension QuickPlayer: QuickResourceManagerDelegate {
+extension QuickPlayer: QuickPlayerResourceLoaderDelegate {
     
 }
