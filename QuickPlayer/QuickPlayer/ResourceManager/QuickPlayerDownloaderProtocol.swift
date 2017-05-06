@@ -10,8 +10,7 @@ import Foundation
 
 @objc public protocol QuickPlayerDownloaderDelegate {
     
-    @objc func downloaderDidUpdateCache()
-
+    @objc optional func downloaderDidUpdateCache()
     @objc optional func downloaderDidReceivedResponse(fileLength: Int64)
     @objc optional func downloaderDidFinishedLoading()
     @objc optional func downloaderDidFailed(error: Error)

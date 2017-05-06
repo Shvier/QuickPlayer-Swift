@@ -10,4 +10,8 @@ import Foundation
 
 @objc public protocol QuickPlayerResourceLoaderDelegate {
     
+    @objc optional func resourceLoaderCacheProgress(progress: Float)
+    @objc optional func resourceLoaderFailLoading(error: Error)
+    @objc optional func resourceLoaderFinishLoading()
+    
 }
