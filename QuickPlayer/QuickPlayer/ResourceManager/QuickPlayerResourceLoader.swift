@@ -18,7 +18,7 @@ open class QuickPlayerResourceLoader: NSURLConnection {
         return Array<AVAssetResourceLoadingRequest>()
     }()
     
-    public weak var delegate: QuickPlayerDownloaderDelegate?
+    public weak var delegate: QuickPlayerResourceLoaderDelegate?
     
     var downloader: QuickPlayerDownloader?
     var filename: String!
@@ -91,6 +91,34 @@ open class QuickPlayerResourceLoader: NSURLConnection {
     
 }
 
+extension QuickPlayerResourceLoader: AVAssetResourceLoaderDelegate {
+    
+    public func resourceLoader(_ resourceLoader: AVAssetResourceLoader, shouldWaitForLoadingOfRequestedResource loadingRequest: AVAssetResourceLoadingRequest) -> Bool {
+        downloaderList.append(loadingRequest)
+        dealLoadingRequest(loadingRequest: loadingRequest)
+        return true
+    }
+    
+    public func resourceLoader(_ resourceLoader: AVAssetResourceLoader, didCancel loadingRequest: AVAssetResourceLoadingRequest) {
+        downloaderList.remove(object: loadingRequest)
+    }
+    
+}
+
 extension QuickPlayerResourceLoader: QuickPlayerDownloaderDelegate {
+    
+    public func downloaderDidUpdateCache() {
+        processDownloaderList()
+        let progress: Float = Float((downloader?.cacheLength)!) / (Float((downloader?.fileLength)!) - Float((downloader?.requestOffset)!))
+        delegate?.resourceLoaderCacheProgress!(progress: progress)
+    }
+    
+    public func downloaderDidFinishedLoading() {
+        delegate?.resourceLoaderFinishLoading!()
+    }
+    
+    public func downloaderDidFailed(error: Error) {
+        delegate?.resourceLoaderFailLoading!(error: error)
+    }
     
 }
