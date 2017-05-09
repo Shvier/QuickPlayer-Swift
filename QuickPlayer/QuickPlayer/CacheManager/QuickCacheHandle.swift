@@ -44,7 +44,7 @@ public class QuickCacheHandle: NSObject {
         do {
             let cacheFilePath = "\(cacheFolderPath)/\(filename)"
             try fileManager.copyItem(atPath: QuickCacheHandle.tempFilePath(filename: filename), toPath: cacheFilePath)
-            print("cache file success")
+            print("cache file success: \(cacheFilePath)")
         } catch let error {
             print("cache file error: \(error)")
         }

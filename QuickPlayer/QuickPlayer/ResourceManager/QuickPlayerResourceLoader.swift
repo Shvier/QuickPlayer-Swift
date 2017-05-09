@@ -12,7 +12,7 @@ import MobileCoreServices
 
 open class QuickPlayerResourceLoader: NSURLConnection {
     
-    let bufferSize: Int64 = 1024 * 300
+    let BufferSize: Int64 = 1024 * 300
     
     lazy var downloaderList: Array<AVAssetResourceLoadingRequest> = {
         return Array<AVAssetResourceLoadingRequest>()
@@ -38,7 +38,7 @@ open class QuickPlayerResourceLoader: NSURLConnection {
     func dealLoadingRequest(loadingRequest: AVAssetResourceLoadingRequest) {
         let interceptedURL = loadingRequest.request.url!
         let range = NSMakeRange(Int((loadingRequest.dataRequest?.currentOffset)!), LONG_MAX)
-        if (downloader?.cacheLength)! > 0 {
+        if downloader != nil && (downloader?.cacheLength)! > 0 {
             processDownloaderList()
         }
         
@@ -47,7 +47,7 @@ open class QuickPlayerResourceLoader: NSURLConnection {
             downloader?.delegate = self
             downloader?.setRequestURL(requestURL: interceptedURL, requestOffset: 0)
         } else {
-            if ((downloader?.requestOffset)! + Int64((downloader?.cacheLength)!) + bufferSize < Int64(range.location)) ||
+            if ((downloader?.requestOffset)! + Int64((downloader?.cacheLength)!) + BufferSize < Int64(range.location)) ||
                 (Int64(range.location) < (downloader?.requestOffset)!) {
                 downloader?.setRequestURL(requestURL: interceptedURL, requestOffset: Int64(range.location))
             }
@@ -57,7 +57,9 @@ open class QuickPlayerResourceLoader: NSURLConnection {
     func processDownloaderList() {
         let finishedDownloaderList = downloaderList
         for loadingRequest in finishedDownloaderList {
-            fillInContentInformation(contentInformationRequest: loadingRequest.contentInformationRequest!)
+            if loadingRequest.contentInformationRequest != nil {
+                fillInContentInformation(contentInformationRequest: loadingRequest.contentInformationRequest!)
+            }
             if respondDataForRequest(dataRequest: loadingRequest.dataRequest!) {
                 loadingRequest.finishLoading()
                 downloaderList.remove(object: loadingRequest)
@@ -106,6 +108,10 @@ extension QuickPlayerResourceLoader: AVAssetResourceLoaderDelegate {
 }
 
 extension QuickPlayerResourceLoader: QuickPlayerDownloaderDelegate {
+    
+    public func downloaderDidReceivedResponse(fileLength: Int64) {
+        
+    }
     
     public func downloaderDidUpdateCache() {
         processDownloaderList()

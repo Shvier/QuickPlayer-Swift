@@ -72,17 +72,18 @@ open class QuickPlayer: NSObject {
                 currentItem = AVPlayerItem(url: url)
             } else {
                 resourceLoader = QuickPlayerResourceLoader(filename: filename!)
-//                resourceLoader?.delegate = self
-                let asset = AVURLAsset(url: videoUrl)
+                resourceLoader?.delegate = self
+                let asset = AVURLAsset(url: videoUrl.customSchemeURL())
+                asset.resourceLoader.setDelegate(resourceLoader, queue: DispatchQueue.main)
                 currentItem = AVPlayerItem(asset: asset)
             }
         } else {
             currentItem = AVPlayerItem(url: videoUrl)
         }
         if player == nil {
-            self.videoUrl = videoUrl
-            currentItem = AVPlayerItem(url: videoUrl)
             self.configPlayer()
+        } else {
+            
         }
         self.play()
         DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) { 
@@ -257,5 +258,17 @@ open class QuickPlayer: NSObject {
 }
 
 extension QuickPlayer: QuickPlayerResourceLoaderDelegate {
+    
+    public func resourceLoaderCacheProgress(progress: Float) {
+        print(progress)
+    }
+    
+    public func resourceLoaderFailLoading(error: Error) {
+        print(error)
+    }
+    
+    public func resourceLoaderFinishLoading() {
+        print("finished")
+    }
     
 }

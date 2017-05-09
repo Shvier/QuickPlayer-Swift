@@ -55,7 +55,7 @@ public class QuickPlayerDownloader: NSObject {
         }
         
         cacheLength = 0
-        var request = URLRequest(url: self.requestURL!, cachePolicy: .reloadIgnoringCacheData, timeoutInterval: RequestTimeOut)
+        var request = URLRequest(url: (self.requestURL?.originalSchemeURL())!, cachePolicy: .reloadIgnoringCacheData, timeoutInterval: RequestTimeOut)
         if self.requestOffset > 0 && fileLength > 0 {
             request.addValue("bytes=\(self.requestOffset)-\(fileLength-1)", forHTTPHeaderField: "Range")
         }
@@ -84,14 +84,17 @@ extension QuickPlayerDownloader: NSURLConnectionDataDelegate {
         cached = false
         let httpResponse = response as! HTTPURLResponse
         let headerFields = httpResponse.allHeaderFields
-        let content = headerFields["Content-Range"] as! String
-        let array = content.components(separatedBy: "/")
-        let length = array.last
+        var length: String = "0"
+        if let content = headerFields["Content-Range"] {
+            let array = (content as! String).components(separatedBy: "/")
+            length = array.last!
+        }
+
         var fileLength: Int64 = 0
-        if Int64.init(length!)! == 0 {
+        if Int64.init(length)! == 0 {
             fileLength = Int64(httpResponse.expectedContentLength)
         } else {
-            fileLength = Int64.init(length!)!
+            fileLength = Int64.init(length)!
         }
         
         self.fileLength = fileLength
