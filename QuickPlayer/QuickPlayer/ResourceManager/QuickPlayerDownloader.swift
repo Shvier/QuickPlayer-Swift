@@ -106,7 +106,7 @@ extension QuickPlayerDownloader: NSURLConnectionDataDelegate {
     
     public func connection(_ connection: NSURLConnection, didReceive data: Data) {
         QuickCacheHandle.writeTempFile(data: data, filename: filename)
-        cacheLength += data.count
+        cacheLength += (data as NSData).length
         delegate?.downloaderDidUpdateCache!()
     }
     
