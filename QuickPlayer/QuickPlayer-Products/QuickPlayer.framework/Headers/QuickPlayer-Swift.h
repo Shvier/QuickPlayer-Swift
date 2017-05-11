@@ -180,6 +180,7 @@ SWIFT_CLASS("_TtC11QuickPlayer11QuickPlayer")
 @property (nonatomic, readonly, copy) NSURL * _Null_unspecified coverUrl;
 @property (nonatomic, readonly, copy) NSURL * _Null_unspecified videoUrl;
 @property (nonatomic) double timeFrequency;
+@property (nonatomic) float volume;
 @property (nonatomic, weak) id <QuickPlayerDelegate> _Nullable delegate;
 /// if you like to fix a brief black screen before playing for video, just set a cover image
 /// \param coverUrl cover image url

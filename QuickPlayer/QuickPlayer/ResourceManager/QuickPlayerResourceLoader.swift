@@ -36,8 +36,10 @@ open class QuickPlayerResourceLoader: NSURLConnection {
     }
     
     func dealLoadingRequest(loadingRequest: AVAssetResourceLoadingRequest) {
-        let interceptedURL = loadingRequest.request.url!
-        let range = NSMakeRange(Int((loadingRequest.dataRequest?.currentOffset)!), LONG_MAX)
+        guard let interceptedURL = loadingRequest.request.url else {
+            return
+        }
+        let range = NSMakeRange(Int(loadingRequest.dataRequest?.currentOffset ?? 0), Int.max)
         if downloader != nil && (downloader?.cacheLength)! > 0 {
             processDownloaderList()
         }
@@ -80,7 +82,7 @@ open class QuickPlayerResourceLoader: NSURLConnection {
         
         do  {
             let fileData = try NSData.init(contentsOf: URL(fileURLWithPath: QuickCacheHandle.tempFilePath(filename: filename)), options: .mappedIfSafe)
-            let unreadBytes = Int64((downloader?.cacheLength)!) - startOffset - (downloader?.requestOffset)!
+            let unreadBytes = Int64((downloader?.cacheLength)!) - (startOffset - (downloader?.requestOffset)!)
             let numberOfBytesToRespond: Int64 = min(Int64(dataRequest.requestedLength), unreadBytes)
             dataRequest.respond(with: fileData.subdata(with: NSMakeRange(Int(startOffset - (downloader?.requestOffset)!), Int(numberOfBytesToRespond))))
             let endOffset = startOffset + Int64(dataRequest.requestedLength)

@@ -84,17 +84,15 @@ extension QuickPlayerDownloader: NSURLConnectionDataDelegate {
         cached = false
         let httpResponse = response as! HTTPURLResponse
         let headerFields = httpResponse.allHeaderFields
-        var length: String = "0"
-        if let content = headerFields["Content-Range"] {
-            let array = (content as! String).components(separatedBy: "/")
-            length = array.last!
-        }
+        let content = headerFields["Content-Range"] as? String
+        let array = content?.components(separatedBy: "/")
+        let length = array?.last
 
         var fileLength: Int64 = 0
-        if Int64.init(length)! == 0 {
+        if Int64.init(length ?? "0")! == 0 {
             fileLength = Int64(httpResponse.expectedContentLength)
         } else {
-            fileLength = Int64.init(length)!
+            fileLength = Int64.init(length!)!
         }
         
         self.fileLength = fileLength
@@ -106,7 +104,7 @@ extension QuickPlayerDownloader: NSURLConnectionDataDelegate {
     
     public func connection(_ connection: NSURLConnection, didReceive data: Data) {
         QuickCacheHandle.writeTempFile(data: data, filename: filename)
-        cacheLength += (data as NSData).length
+        cacheLength += data.count
         delegate?.downloaderDidUpdateCache!()
     }
     

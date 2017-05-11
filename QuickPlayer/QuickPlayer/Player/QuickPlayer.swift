@@ -29,6 +29,16 @@ open class QuickPlayer: NSObject {
     // current time callback frequency
     public var timeFrequency: Float64 = 1.0
     
+    // volume
+    public var volume: Float {
+        get {
+            return (player?.volume)!
+        }
+        set {
+            player?.volume = newValue
+        }
+    }
+    
     // player delegate, jump to QuickPlayerDelegate.Swift
     public weak var delegate: QuickPlayerDelegate?
     
