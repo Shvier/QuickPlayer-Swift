@@ -28,11 +28,23 @@ public class QuickPlayerDownloader: NSObject {
     var requestURL:                                  URL?
     var cached:                                      Bool = true
     var once:                                        Bool = false
+    var fileHandle:                                  FileHandle?
+    var offset: Int64 = 0
+    var tempPath: String?
     
     public init(filename: String) {
         super.init()
         self.filename = filename
-        let _ = QuickCacheHandle.createTempFile(filename: filename)
+//        let _ = QuickCacheHandle.createTempFile(filename: filename)
+//        self.tempPath = QuickCacheHandle.tempFilePath(filename: filename)
+        self.tempPath = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true).last?.appending("/temp.mp4")
+
+        if FileManager.default.fileExists(atPath: self.tempPath!) {
+            try? FileManager.default.removeItem(atPath: self.tempPath!)
+            FileManager.default.createFile(atPath: self.tempPath!, contents: nil, attributes: nil)
+        } else {
+            FileManager.default.createFile(atPath: self.tempPath!, contents: nil, attributes: nil)
+        }
     }
     
     public func cancel() {
@@ -50,8 +62,10 @@ public class QuickPlayerDownloader: NSObject {
         
         // If request for second time, create a new file and remove old file
         if connectionList.count >= 1 {
-            QuickCacheHandle.clearCache(filename: filename)
-            let _ = QuickCacheHandle.createTempFile(filename: filename)
+//            QuickCacheHandle.clearCache(filename: filename)
+//            let _ = QuickCacheHandle.createTempFile(filename: filename)
+            try? FileManager.default.removeItem(atPath: self.tempPath!)
+            FileManager.default.createFile(atPath: self.tempPath!, contents: nil, attributes: nil)
         }
         
         cacheLength = 0
@@ -95,15 +109,26 @@ extension QuickPlayerDownloader: NSURLConnectionDataDelegate {
             fileLength = Int64.init(length!)!
         }
         
+        if content == nil {
+            offset = 0
+        } else {
+            offset = fileLength - cacheLength
+        }
+        
         self.fileLength = fileLength
         self.mimeType = "video/mp4"
         
         delegate?.downloaderDidReceivedResponse!(fileLength: fileLength)
         connectionList.append(connection)
+//        fileHandle = FileHandle.init(forWritingAtPath: QuickCacheHandle.tempFilePath(filename: filename))
+        fileHandle = FileHandle.init(forWritingAtPath: self.tempPath!)
     }
     
     public func connection(_ connection: NSURLConnection, didReceive data: Data) {
-        QuickCacheHandle.writeTempFile(data: data, filename: filename)
+//        QuickCacheHandle.writeTempFile(data: data, filename: filename)
+//        cacheLength += data.count
+        fileHandle?.seekToEndOfFile()
+        fileHandle?.write(data)
         cacheLength += data.count
         delegate?.downloaderDidUpdateCache!()
     }

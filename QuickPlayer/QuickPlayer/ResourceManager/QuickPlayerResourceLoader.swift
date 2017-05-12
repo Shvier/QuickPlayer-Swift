@@ -22,16 +22,18 @@ open class QuickPlayerResourceLoader: NSURLConnection {
     
     var downloader: QuickPlayerDownloader?
     var filename: String!
+    var tmpPath: String?
 
     public init(filename: String) {
         super.init()
         self.filename = filename
+        self.tmpPath = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true).last?.appending("/temp.mp4")
     }
     
     func fillInContentInformation(contentInformationRequest: AVAssetResourceLoadingContentInformationRequest) {
-        let contentType = UTTypeCreatePreferredIdentifierForTag(kUTTagClassMIMEType, (downloader?.mimeType!)! as CFString, String() as CFString)
+        let contentType = UTTypeCreatePreferredIdentifierForTag(kUTTagClassMIMEType, (downloader?.mimeType!)! as CFString, nil)?.takeRetainedValue()
         contentInformationRequest.isByteRangeAccessSupported = true
-        contentInformationRequest.contentType = String.init(describing: contentType)
+        contentInformationRequest.contentType = CFBridgingRetain(contentType) as? String
         contentInformationRequest.contentLength = (downloader?.fileLength)!
     }
     
@@ -81,7 +83,8 @@ open class QuickPlayerResourceLoader: NSURLConnection {
         }
         
         do  {
-            let fileData = try NSData.init(contentsOf: URL(fileURLWithPath: QuickCacheHandle.tempFilePath(filename: filename)), options: .mappedIfSafe)
+            let fileData = try NSData.init(contentsOf: URL(fileURLWithPath: self.tmpPath!), options: .mappedIfSafe)
+//            let fileData = try NSData.init(contentsOf: URL(fileURLWithPath: QuickCacheHandle.tempFilePath(filename: filename)), options: .mappedIfSafe)
             let unreadBytes = Int64((downloader?.cacheLength)!) - (startOffset - (downloader?.requestOffset)!)
             let numberOfBytesToRespond: Int64 = min(Int64(dataRequest.requestedLength), unreadBytes)
             dataRequest.respond(with: fileData.subdata(with: NSMakeRange(Int(startOffset - (downloader?.requestOffset)!), Int(numberOfBytesToRespond))))

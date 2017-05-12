@@ -68,7 +68,7 @@ public class QuickCacheHandle: NSObject {
     }
     
     static open func tempFilePath(filename: String) -> String {
-        return "\(QuickCacheHandle.cacheFolderPath())/\(filename).tmp"
+        return "\(QuickCacheHandle.cacheFolderPath())/tmp\(filename)"
     }
     
     static open func cacheFolderPath() -> String {

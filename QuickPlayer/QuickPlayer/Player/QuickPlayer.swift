@@ -270,7 +270,7 @@ open class QuickPlayer: NSObject {
 extension QuickPlayer: QuickPlayerResourceLoaderDelegate {
     
     public func resourceLoaderCacheProgress(progress: Float) {
-        print(progress)
+//        print(progress)
     }
     
     public func resourceLoaderFailLoading(error: Error) {
