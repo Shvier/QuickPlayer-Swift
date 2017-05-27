@@ -128,6 +128,7 @@ extension QuickPlayerDownloader: NSURLConnectionDataDelegate {
 //        QuickCacheHandle.writeTempFile(data: data, filename: filename)
 //        cacheLength += data.count
         fileHandle?.seekToEndOfFile()
+        fileHandle?.seek(toFileOffset: UInt64(offset))
         fileHandle?.write(data)
         cacheLength += data.count
         delegate?.downloaderDidUpdateCache!()
