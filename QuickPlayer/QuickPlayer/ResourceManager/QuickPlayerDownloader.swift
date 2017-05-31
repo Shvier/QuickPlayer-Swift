@@ -53,7 +53,7 @@ public class QuickPlayerDownloader: NSObject {
     
     public func clearData() {
         connection?.cancel()
-        QuickCacheHandle.clearCache(filename: filename)
+//        QuickCacheHandle.clearCache(filename: filename)
     }
     
     public func setRequestURL(requestURL: URL, requestOffset: Int64) {
