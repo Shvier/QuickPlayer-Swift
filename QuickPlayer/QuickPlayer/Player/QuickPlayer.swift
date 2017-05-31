@@ -81,12 +81,6 @@ open class QuickPlayer: NSObject {
                 let url = URL(fileURLWithPath: cacheFilePath!)
                 currentItem = AVPlayerItem(url: url)
             } else {
-//                resourceLoader = QuickPlayerResourceLoader(filename: filename!)
-//                resourceLoader?.delegate = self
-//                let asset = AVURLAsset(url: videoUrl.customSchemeURL())
-//                asset.resourceLoader.setDelegate(resourceLoader, queue: DispatchQueue.main)
-//                currentItem = AVPlayerItem(asset: asset)
-                
                 resourceManager = QuickPlayerResourceManager.init(self.videoUrl, filename: self.filename!, delegate: self)
                 currentItem = AVPlayerItem(url: self.videoUrl)
             }

@@ -9,7 +9,7 @@
 import UIKit
 
 // default cache path: /Library/Caches/com.Shvier.QuickPlayer/xxx.mp4
-// default temp file path: /Library/Caches/com.Shvier.QuickPlayer/xxx
+// default temp file path: /Library/Caches/com.Shvier.QuickPlayer/xxx.tmp
 
 public class QuickCacheHandle: NSObject {
     
@@ -63,7 +63,7 @@ public class QuickCacheHandle: NSObject {
     }
     
     static open func cacheFilePath(filename: String) -> String {
-        return "\(QuickCacheHandle.cacheFolderPath())\(filename).mp4"
+        return "\(QuickCacheHandle.cacheFolderPath())/\(filename)"
     }
     
     static open func cacheFolderPath() -> String {

@@ -88,14 +88,14 @@ extension QuickPlayerResourceManager: URLSessionDataDelegate {
         completionHandler(.allow)
         
         totalLength = response.expectedContentLength + Int64(currentLength)
-        delegate.resourceManagerRequestResponsed!(manager: self, videoLength: videoLength)
+        delegate.resourceManagerRequestResponsed(manager: self, videoLength: videoLength)
     }
     
     public func urlSession(_ session: URLSession, dataTask: URLSessionDataTask, didReceive data: Data) {
         QuickCacheHandle.writeTempFile(data: data, filename: filename!)
         currentLength = currentLength + data.count
         let progress: Float = Float(currentLength) / Float(totalLength)
-        delegate.resourceManagerReceiving!(manager: self, progress: progress)
+        delegate.resourceManagerReceiving(manager: self, progress: progress)
     }
     
     public func urlSession(_ session: URLSession, task: URLSessionTask, didCompleteWithError error: Error?) {
@@ -105,9 +105,10 @@ extension QuickPlayerResourceManager: URLSessionDataDelegate {
             }
             
             QuickCacheHandle.cacheTempFile(filename: filename!)
-            delegate.resourceManagerFinshLoading!(manager: self, cachePath: QuickCacheHandle.cacheFilePath(filename: filename!))
+            QuickCacheHandle.clearTempFile(filename: filename!)
+            delegate.resourceManagerFinshLoading(manager: self, cachePath: QuickCacheHandle.cacheFilePath(filename: filename!))
         } else {
-            delegate.resourceManagerFailedLoading!(manager: self, error: error!)
+            delegate.resourceManagerFailedLoading(manager: self, error: error!)
         }
     }
     
