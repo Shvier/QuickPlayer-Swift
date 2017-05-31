@@ -158,10 +158,13 @@ SWIFT_CLASS("_TtC11QuickPlayer16QuickCacheHandle")
 + (NSData * _Nonnull)readTempFileDataWithOffset:(uint64_t)offset length:(uint64_t)length filename:(NSString * _Nonnull)filename SWIFT_WARN_UNUSED_RESULT;
 + (void)cacheTempFileWithFilename:(NSString * _Nonnull)filename;
 + (NSString * _Nullable)cacheFileExistsWithFilename:(NSString * _Nonnull)filename SWIFT_WARN_UNUSED_RESULT;
-+ (void)clearCache;
 + (NSString * _Nonnull)tempFilePathWithFilename:(NSString * _Nonnull)filename SWIFT_WARN_UNUSED_RESULT;
++ (NSString * _Nonnull)cacheFilePathWithFilename:(NSString * _Nonnull)filename SWIFT_WARN_UNUSED_RESULT;
 + (NSString * _Nonnull)cacheFolderPath SWIFT_WARN_UNUSED_RESULT;
-+ (void)clearCacheWithFilename:(NSString * _Nonnull)filename;
++ (void)clearCache;
++ (void)clearCacheFileWithFilename:(NSString * _Nonnull)filename;
++ (void)clearTempFileWithFilename:(NSString * _Nonnull)filename;
++ (void)clearFileWithFilePath:(NSString * _Nonnull)filePath;
 - (nonnull instancetype)init OBJC_DESIGNATED_INITIALIZER;
 @end
 
@@ -210,6 +213,21 @@ SWIFT_CLASS("_TtC11QuickPlayer11QuickPlayer")
 - (nonnull instancetype)initWithFrame:(CGRect)frame OBJC_DESIGNATED_INITIALIZER;
 - (void)observeValueForKeyPath:(NSString * _Nullable)keyPath ofObject:(id _Nullable)object change:(NSDictionary<NSKeyValueChangeKey, id> * _Nullable)change context:(void * _Nullable)context;
 - (nonnull instancetype)init SWIFT_UNAVAILABLE;
+@end
+
+@class QuickPlayerResourceManager;
+
+SWIFT_PROTOCOL("_TtP11QuickPlayer34QuickPlayerResourceManagerDelegate_")
+@protocol QuickPlayerResourceManagerDelegate
+@optional
+- (void)resourceManagerRequestResponsedWithManager:(QuickPlayerResourceManager * _Nonnull)manager videoLength:(int64_t)videoLength;
+- (void)resourceManagerReceivingWithManager:(QuickPlayerResourceManager * _Nonnull)manager progress:(float)progress;
+- (void)resourceManagerFinshLoadingWithManager:(QuickPlayerResourceManager * _Nonnull)manager cachePath:(NSString * _Nonnull)cachePath;
+- (void)resourceManagerFailedLoadingWithManager:(QuickPlayerResourceManager * _Nonnull)manager error:(NSError * _Nonnull)error;
+@end
+
+
+@interface QuickPlayer (SWIFT_EXTENSION(QuickPlayer)) <QuickPlayerResourceManagerDelegate>
 @end
 
 
@@ -306,6 +324,26 @@ SWIFT_CLASS("_TtC11QuickPlayer25QuickPlayerResourceLoader")
 - (void)downloaderDidUpdateCache;
 - (void)downloaderDidFinishedLoading;
 - (void)downloaderDidFailedWithError:(NSError * _Nonnull)error;
+@end
+
+
+
+SWIFT_CLASS("_TtC11QuickPlayer26QuickPlayerResourceManager")
+@interface QuickPlayerResourceManager : NSObject
+@property (nonatomic, readonly, copy) NSURL * _Null_unspecified videoURL;
+@property (nonatomic, weak) id <QuickPlayerResourceManagerDelegate> _Null_unspecified delegate;
+- (nonnull instancetype)init:(NSURL * _Nonnull)videoURL filename:(NSString * _Nonnull)filename delegate:(id <QuickPlayerResourceManagerDelegate> _Nonnull)delegate OBJC_DESIGNATED_INITIALIZER;
+- (nonnull instancetype)init SWIFT_UNAVAILABLE;
+@end
+
+@class NSURLSession;
+@class NSURLSessionDataTask;
+@class NSURLSessionTask;
+
+@interface QuickPlayerResourceManager (SWIFT_EXTENSION(QuickPlayer)) <NSURLSessionDataDelegate, NSURLSessionDelegate, NSURLSessionTaskDelegate>
+- (void)URLSession:(NSURLSession * _Nonnull)session dataTask:(NSURLSessionDataTask * _Nonnull)dataTask didReceiveResponse:(NSURLResponse * _Nonnull)response completionHandler:(void (^ _Nonnull)(enum NSURLSessionResponseDisposition))completionHandler;
+- (void)URLSession:(NSURLSession * _Nonnull)session dataTask:(NSURLSessionDataTask * _Nonnull)dataTask didReceiveData:(NSData * _Nonnull)data;
+- (void)URLSession:(NSURLSession * _Nonnull)session task:(NSURLSessionTask * _Nonnull)task didCompleteWithError:(NSError * _Nullable)error;
 @end
 
 

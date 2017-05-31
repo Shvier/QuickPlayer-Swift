@@ -23,11 +23,7 @@
 /* Begin PBXBuildFile section */
 		C001093C1E9E18AB00FE839B /* QuickCacheHandle.swift in Sources */ = {isa = PBXBuildFile; fileRef = C001093B1E9E18AB00FE839B /* QuickCacheHandle.swift */; };
 		C00109401E9E192500FE839B /* URL+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = C001093F1E9E192500FE839B /* URL+Extension.swift */; };
-		C01923461EA09EF6001E86F6 /* QuickPlayerDownloaderProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = C01923451EA09EF6001E86F6 /* QuickPlayerDownloaderProtocol.swift */; };
 		C01923481EA1055C001E86F6 /* Array+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = C01923471EA1055C001E86F6 /* Array+Extension.swift */; };
-		C01BA21E1EBCD0D8005A8A2D /* QuickPlayerDownloader.swift in Sources */ = {isa = PBXBuildFile; fileRef = C01BA21D1EBCD0D8005A8A2D /* QuickPlayerDownloader.swift */; };
-		C01F951D1EBDC3E300DFB035 /* QuickPlayerResourceLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = C01F951C1EBDC3E300DFB035 /* QuickPlayerResourceLoader.swift */; };
-		C01F951F1EBDC3F700DFB035 /* QuickPlayerResourceLoaderProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = C01F951E1EBDC3F700DFB035 /* QuickPlayerResourceLoaderProtocol.swift */; };
 		C0300DE01E8EA11D00029B8F /* QuickPlayer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C0300DD61E8EA11D00029B8F /* QuickPlayer.framework */; };
 		C0300DE51E8EA11D00029B8F /* QuickPlayerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0300DE41E8EA11D00029B8F /* QuickPlayerTests.swift */; };
 		C0300DE71E8EA11D00029B8F /* QuickPlayer.h in Headers */ = {isa = PBXBuildFile; fileRef = C0300DD91E8EA11D00029B8F /* QuickPlayer.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -51,11 +47,7 @@
 /* Begin PBXFileReference section */
 		C001093B1E9E18AB00FE839B /* QuickCacheHandle.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QuickCacheHandle.swift; sourceTree = "<group>"; };
 		C001093F1E9E192500FE839B /* URL+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "URL+Extension.swift"; sourceTree = "<group>"; };
-		C01923451EA09EF6001E86F6 /* QuickPlayerDownloaderProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QuickPlayerDownloaderProtocol.swift; sourceTree = "<group>"; };
 		C01923471EA1055C001E86F6 /* Array+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Array+Extension.swift"; sourceTree = "<group>"; };
-		C01BA21D1EBCD0D8005A8A2D /* QuickPlayerDownloader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QuickPlayerDownloader.swift; sourceTree = "<group>"; };
-		C01F951C1EBDC3E300DFB035 /* QuickPlayerResourceLoader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QuickPlayerResourceLoader.swift; sourceTree = "<group>"; };
-		C01F951E1EBDC3F700DFB035 /* QuickPlayerResourceLoaderProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QuickPlayerResourceLoaderProtocol.swift; sourceTree = "<group>"; };
 		C0300DD61E8EA11D00029B8F /* QuickPlayer.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = QuickPlayer.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		C0300DD91E8EA11D00029B8F /* QuickPlayer.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = QuickPlayer.h; sourceTree = "<group>"; };
 		C0300DDA1E8EA11D00029B8F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -99,10 +91,6 @@
 		C00109361E9E186400FE839B /* ResourceManager */ = {
 			isa = PBXGroup;
 			children = (
-				C01923451EA09EF6001E86F6 /* QuickPlayerDownloaderProtocol.swift */,
-				C01BA21D1EBCD0D8005A8A2D /* QuickPlayerDownloader.swift */,
-				C01F951C1EBDC3E300DFB035 /* QuickPlayerResourceLoader.swift */,
-				C01F951E1EBDC3F700DFB035 /* QuickPlayerResourceLoaderProtocol.swift */,
 				C0333A351ED9B76300F62D11 /* QuickPlayerResourceManager.swift */,
 				C0333A371ED9B79B00F62D11 /* QuickPlayerResourceManagerProtocol.swift */,
 			);
@@ -311,18 +299,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				C01BA21E1EBCD0D8005A8A2D /* QuickPlayerDownloader.swift in Sources */,
-				C01923461EA09EF6001E86F6 /* QuickPlayerDownloaderProtocol.swift in Sources */,
 				C0333A381ED9B79B00F62D11 /* QuickPlayerResourceManagerProtocol.swift in Sources */,
 				C001093C1E9E18AB00FE839B /* QuickCacheHandle.swift in Sources */,
 				C00109401E9E192500FE839B /* URL+Extension.swift in Sources */,
-				C01F951F1EBDC3F700DFB035 /* QuickPlayerResourceLoaderProtocol.swift in Sources */,
 				C01923481EA1055C001E86F6 /* Array+Extension.swift in Sources */,
 				C0300DF31E8EA98600029B8F /* QuickPlayer.swift in Sources */,
 				C07A28001EAE4E920023D910 /* QuickPlayerManager.swift in Sources */,
 				C0333A361ED9B76300F62D11 /* QuickPlayerResourceManager.swift in Sources */,
 				C0D3C2EF1E8EBA6E00F0241D /* QuickPlayerProtocol.swift in Sources */,
-				C01F951D1EBDC3E300DFB035 /* QuickPlayerResourceLoader.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -6,7 +6,7 @@
 	<dict>
 		<key>Headers/QuickPlayer-Swift.h</key>
 		<data>
-		y7mOGh+IhvGL0t2nYt5aU6Qwr38=
+		GPaG75XQSijJ6DFiockJxApjiQU=
 		</data>
 		<key>Headers/QuickPlayer.h</key>
 		<data>
@@ -22,7 +22,7 @@
 		</data>
 		<key>Modules/QuickPlayer.swiftmodule/i386.swiftmodule</key>
 		<data>
-		WwU+oA/yCl1Gk01+Phl9DQ+nqY8=
+		RlMUWe2UAbau0lDBDwY/FpFveL4=
 		</data>
 		<key>Modules/QuickPlayer.swiftmodule/x86_64.swiftdoc</key>
 		<data>
@@ -30,7 +30,7 @@
 		</data>
 		<key>Modules/QuickPlayer.swiftmodule/x86_64.swiftmodule</key>
 		<data>
-		D76N58szyY4vyBw9zVVPIcP9f9Q=
+		U+WG8mBr1msl6eVL5OcwQCiYFK0=
 		</data>
 		<key>Modules/module.modulemap</key>
 		<data>
@@ -43,11 +43,11 @@
 		<dict>
 			<key>hash</key>
 			<data>
-			y7mOGh+IhvGL0t2nYt5aU6Qwr38=
+			GPaG75XQSijJ6DFiockJxApjiQU=
 			</data>
 			<key>hash2</key>
 			<data>
-			ZecimV5xigeSOX+q82Q5S2IoTXadGxIJeDvqi5+ekLM=
+			/G5YDSlI3gmWdKvBUfNwEt4YgrE+KKI3jzIEPKCGT78=
 			</data>
 		</dict>
 		<key>Headers/QuickPlayer.h</key>
@@ -76,11 +76,11 @@
 		<dict>
 			<key>hash</key>
 			<data>
-			WwU+oA/yCl1Gk01+Phl9DQ+nqY8=
+			RlMUWe2UAbau0lDBDwY/FpFveL4=
 			</data>
 			<key>hash2</key>
 			<data>
-			OZgJW/HiJceC1Me8FP9Nogs5/+3P6jDsaKjheKsAyuM=
+			DTAd1kwcdJh8q0o1WCcEVA+qsUBlh7iloV0XKvoxK+o=
 			</data>
 		</dict>
 		<key>Modules/QuickPlayer.swiftmodule/x86_64.swiftdoc</key>
@@ -98,11 +98,11 @@
 		<dict>
 			<key>hash</key>
 			<data>
-			D76N58szyY4vyBw9zVVPIcP9f9Q=
+			U+WG8mBr1msl6eVL5OcwQCiYFK0=
 			</data>
 			<key>hash2</key>
 			<data>
-			Pi+xmf3OFTDg0s0NyKhXmbC5JNmtXoriB/SRxXfQFk0=
+			e0EUqnr9o5EJ+rOADoIVxcbPYnoCgJYp2w/9SK4dtnE=
 			</data>
 		</dict>
 		<key>Modules/module.modulemap</key>

@@ -51,7 +51,7 @@ open class QuickPlayer: NSObject {
     // AVPlayer layer
     var playerLayer: AVPlayerLayer?
     // cache resource manager
-    var resourceLoader: QuickPlayerResourceLoader?
+    var resourceManager: QuickPlayerResourceManager?
     // cache filename
     var filename: String?
     
@@ -81,11 +81,14 @@ open class QuickPlayer: NSObject {
                 let url = URL(fileURLWithPath: cacheFilePath!)
                 currentItem = AVPlayerItem(url: url)
             } else {
-                resourceLoader = QuickPlayerResourceLoader(filename: filename!)
-                resourceLoader?.delegate = self
-                let asset = AVURLAsset(url: videoUrl.customSchemeURL())
-                asset.resourceLoader.setDelegate(resourceLoader, queue: DispatchQueue.main)
-                currentItem = AVPlayerItem(asset: asset)
+//                resourceLoader = QuickPlayerResourceLoader(filename: filename!)
+//                resourceLoader?.delegate = self
+//                let asset = AVURLAsset(url: videoUrl.customSchemeURL())
+//                asset.resourceLoader.setDelegate(resourceLoader, queue: DispatchQueue.main)
+//                currentItem = AVPlayerItem(asset: asset)
+                
+                resourceManager = QuickPlayerResourceManager.init(self.videoUrl, filename: self.filename!, delegate: self)
+                currentItem = AVPlayerItem(url: self.videoUrl)
             }
         } else {
             currentItem = AVPlayerItem(url: videoUrl)
@@ -267,18 +270,22 @@ open class QuickPlayer: NSObject {
     
 }
 
-extension QuickPlayer: QuickPlayerResourceLoaderDelegate {
+extension QuickPlayer: QuickPlayerResourceManagerDelegate {
     
-    public func resourceLoaderCacheProgress(progress: Float) {
-//        print(progress)
+    public func resourceManagerRequestResponsed(manager: QuickPlayerResourceManager, videoLength: Int64) {
+        
     }
     
-    public func resourceLoaderFailLoading(error: Error) {
-        print(error)
+    public func resourceManagerReceiving(manager: QuickPlayerResourceManager, progress: Float) {
+        
     }
     
-    public func resourceLoaderFinishLoading() {
-        print("finished")
+    public func resourceManagerFinshLoading(manager: QuickPlayerResourceManager, cachePath: String) {
+        
+    }
+    
+    public func resourceManagerFailedLoading(manager: QuickPlayerResourceManager, error: Error) {
+        
     }
     
 }
