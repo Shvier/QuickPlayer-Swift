@@ -11,22 +11,24 @@ import AVFoundation
 
 open class QuickPlayerResourceManager: NSObject {
     
-    let RequestTimeOut: TimeInterval = 20
+    let RequestTimeOut:                        TimeInterval = 20
     
-    lazy var session: URLSession = {
+    lazy var session:                          URLSession = {
         return URLSession(configuration: URLSessionConfiguration.default, delegate: self, delegateQueue: OperationQueue.main)
     }()
     
-    private(set) public var videoURL: URL!
-    var filename: String!
-    public weak var delegate: QuickPlayerResourceManagerDelegate!
+    private(set) public var videoURL:          URL!
+    private(set) public var filename:          String!
+    private(set) public weak var delegate:     QuickPlayerResourceManagerDelegate!
     
-    var totalLength: Int64 = 0
-    var currentLength: Int = 0
+    // video size
+    fileprivate(set) public var totalLength:   Int64 = 0
+    // current cache size
+    fileprivate(set) public var currentLength: Int = 0
     
-    var tempPath: String?
-    var cachePath: String?
-    var dataTask: URLSessionDataTask?
+    var tempPath:                              String?
+    var cachePath:                             String?
+    var dataTask:                              URLSessionDataTask?
 
     public init(_ videoURL: URL, filename: String, delegate: QuickPlayerResourceManagerDelegate) {
         super.init()
@@ -36,6 +38,7 @@ open class QuickPlayerResourceManager: NSObject {
         handleFile()
     }
     
+    // start or resume http request
     func resume() {
         if dataTask == nil {
             startRequest()
@@ -44,12 +47,15 @@ open class QuickPlayerResourceManager: NSObject {
         }
     }
     
+    // pause http request
     func suspend() {
         dataTask?.suspend()
     }
     
+    // cancel http request
     func cancel() {
         dataTask?.cancel()
+        session.invalidateAndCancel()
         dataTask = nil
     }
     

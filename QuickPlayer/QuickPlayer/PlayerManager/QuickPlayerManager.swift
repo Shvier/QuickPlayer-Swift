@@ -9,13 +9,13 @@
 
 import UIKit
 
-open class QuickPlayerManager: NSObject {
+public class QuickPlayerManager: NSObject {
     
     static let sharedInstance = QuickPlayerManager()
     
-    lazy var httpsMode: Bool = {
-        return false
-    }()
+//    lazy var httpsMode: Bool = {
+//        return false
+//    }()
     
     lazy var cachePath: String = {
         return NSHomeDirectory().appending("/Library/Caches/\(Bundle.main.bundleIdentifier!)")

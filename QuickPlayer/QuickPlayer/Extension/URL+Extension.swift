@@ -10,7 +10,7 @@ import Foundation
 
 let customScheme = "streaming"
 let httpScheme = "http"
-let httpsScheme = "https"
+//let httpsScheme = "https"
 
 extension URL {
     func customSchemeURL() -> URL {
@@ -21,11 +21,11 @@ extension URL {
     
     func originalSchemeURL() -> URL {
         var components = URLComponents(url: self, resolvingAgainstBaseURL: false)
-        if QuickPlayerManager.sharedInstance.httpsMode {
-            components?.scheme = httpsScheme
-        } else {
+//        if QuickPlayerManager.sharedInstance.httpsMode {
+//            components?.scheme = httpsScheme
+//        } else {
             components?.scheme = httpScheme
-        }
+//        }
         return (components?.url)!
     }
 }

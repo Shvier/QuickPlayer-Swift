@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		C02D49F71E97DA8F001FDC7B /* test.m4v in Resources */ = {isa = PBXBuildFile; fileRef = C02D49F61E97DA8F001FDC7B /* test.m4v */; };
 		C0300D9F1E8EA10B00029B8F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0300D9E1E8EA10B00029B8F /* AppDelegate.swift */; };
 		C0300DA11E8EA10B00029B8F /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0300DA01E8EA10B00029B8F /* ViewController.swift */; };
 		C0300DA41E8EA10B00029B8F /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C0300DA21E8EA10B00029B8F /* Main.storyboard */; };
@@ -15,6 +14,7 @@
 		C0300DA91E8EA10B00029B8F /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C0300DA71E8EA10B00029B8F /* LaunchScreen.storyboard */; };
 		C0300DB41E8EA10B00029B8F /* QuickPlayer_ExampleTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0300DB31E8EA10B00029B8F /* QuickPlayer_ExampleTests.swift */; };
 		C0300DBF1E8EA10B00029B8F /* QuickPlayer_ExampleUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0300DBE1E8EA10B00029B8F /* QuickPlayer_ExampleUITests.swift */; };
+		C0AC17DD1EDEC10E001BC254 /* test.m4v in Resources */ = {isa = PBXBuildFile; fileRef = C0AC17DC1EDEC10E001BC254 /* test.m4v */; };
 		C0D3C2EA1E8EB32A00F0241D /* QuickPlayer.framework in Resources */ = {isa = PBXBuildFile; fileRef = C0D3C2E81E8EB32300F0241D /* QuickPlayer.framework */; };
 		C0D3C2EC1E8EB37900F0241D /* QuickPlayer.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = C0D3C2E81E8EB32300F0241D /* QuickPlayer.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 /* End PBXBuildFile section */
@@ -51,7 +51,6 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		C02D49F61E97DA8F001FDC7B /* test.m4v */ = {isa = PBXFileReference; lastKnownFileType = file; path = test.m4v; sourceTree = "<group>"; };
 		C0300D9B1E8EA10B00029B8F /* QuickPlayer-Example.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "QuickPlayer-Example.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		C0300D9E1E8EA10B00029B8F /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		C0300DA01E8EA10B00029B8F /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -65,6 +64,7 @@
 		C0300DBA1E8EA10B00029B8F /* QuickPlayer-ExampleUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "QuickPlayer-ExampleUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		C0300DBE1E8EA10B00029B8F /* QuickPlayer_ExampleUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuickPlayer_ExampleUITests.swift; sourceTree = "<group>"; };
 		C0300DC01E8EA10B00029B8F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		C0AC17DC1EDEC10E001BC254 /* test.m4v */ = {isa = PBXFileReference; lastKnownFileType = file; path = test.m4v; sourceTree = "<group>"; };
 		C0D3C2E81E8EB32300F0241D /* QuickPlayer.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuickPlayer.framework; path = "../QuickPlayer/QuickPlayer-Products/QuickPlayer.framework"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -96,7 +96,7 @@
 		C0300D921E8EA10B00029B8F = {
 			isa = PBXGroup;
 			children = (
-				C02D49F61E97DA8F001FDC7B /* test.m4v */,
+				C0AC17DC1EDEC10E001BC254 /* test.m4v */,
 				C0300D9D1E8EA10B00029B8F /* QuickPlayer-Example */,
 				C0300DB21E8EA10B00029B8F /* QuickPlayer-ExampleTests */,
 				C0300DBD1E8EA10B00029B8F /* QuickPlayer-ExampleUITests */,
@@ -265,10 +265,10 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C0AC17DD1EDEC10E001BC254 /* test.m4v in Resources */,
 				C0D3C2EA1E8EB32A00F0241D /* QuickPlayer.framework in Resources */,
 				C0300DA91E8EA10B00029B8F /* LaunchScreen.storyboard in Resources */,
 				C0300DA61E8EA10B00029B8F /* Assets.xcassets in Resources */,
-				C02D49F71E97DA8F001FDC7B /* test.m4v in Resources */,
 				C0300DA41E8EA10B00029B8F /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
