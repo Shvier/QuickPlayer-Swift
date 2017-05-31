@@ -6,5 +6,5 @@ xcode_scheme: QuickPlayer
 xcode_sdk: iphonesimulator8.3
 
 script:
-- xcodebuild clean build test -project QuickPlayer.xcodeproj -scheme QuickPlayer
+- xcodebuild clean build test -project QuickPlayer/QuickPlayer.xcodeproj -scheme QuickPlayer
 
