@@ -29,7 +29,7 @@
 `player.preparePlay(coverUrl: #URL#)`
 `player.startPlayer(videoUrl: #URL#)`
 
-4. Change video source
+4. Change video source     
 `player.replaceCurrentItem(coverUrl: #URL#, videoUrl: #URL#)`
 
 ## Other
