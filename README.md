@@ -4,7 +4,7 @@
 <a href="https://raw.githubusercontent.com/Shvier/QuickPlayer-Swift/master/README.md"><img src="https://img.shields.io/packagist/l/doctrine/orm.svg"></a>
 <a href=""><img src="https://img.shields.io/badge/platform-ios-lightgray.svg"></a>
 
-[**中文说明**]()
+[**中文说明**](https://github.com/Shvier/QuickPlayer-Swift/blob/master/README_zh-CN.md)
 
 ## Features
 
