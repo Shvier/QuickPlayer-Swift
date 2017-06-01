@@ -7,6 +7,7 @@
 //
 
 @objc public enum PlayerStatus: Int {
+    case Buffering
     case ReadyToPlay
     case Paused
     case Failed

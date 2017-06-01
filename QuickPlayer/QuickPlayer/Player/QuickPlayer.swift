@@ -90,7 +90,17 @@ open class QuickPlayer: NSObject {
         if player == nil {
             self.configPlayer()
         } else {
-            
+            player = ({
+                let player = AVPlayer(playerItem: self.currentItem)
+                return player
+            }())
+            playerLayer = ({
+                let playerLayer = AVPlayerLayer(player: player)
+                playerLayer.frame = CGRect(x: 0, y: 0, width: frame.size.width, height: frame.size.height)
+                return playerLayer
+            }())
+            player?.replaceCurrentItem(with: currentItem)
+            playerView.layer.insertSublayer(playerLayer!, above: playerView.layer)
         }
         self.play()
         DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) { 
@@ -130,7 +140,7 @@ open class QuickPlayer: NSObject {
         playerLayer?.removeFromSuperlayer()
         player?.pause()
         player?.replaceCurrentItem(with: nil)
-//        resourceManager?.stopLoading()
+        resourceManager?.cancel()
     }
     
     /// replace current item with another video
@@ -200,7 +210,6 @@ open class QuickPlayer: NSObject {
     func configPlayer() {
         player = ({
             let player = AVPlayer(playerItem: self.currentItem)
-            player.volume = 0
             return player
         }())
         playerLayer = ({
@@ -220,7 +229,6 @@ open class QuickPlayer: NSObject {
             let status: AVPlayerStatus = AVPlayerStatus(rawValue: ((change![NSKeyValueChangeKey.kindKey] as! NSNumber).intValue))!
             switch status {
             case .readyToPlay:
-                self.delegate?.playerChangedStatus!(status: .ReadyToPlay)
                 self.playbackTimeObserver = self.player?.addPeriodicTimeObserver(forInterval: CMTimeMakeWithSeconds(timeFrequency, Int32(NSEC_PER_SEC)), queue: nil, using: { [unowned self] (time) in
                     let currentSecond = CGFloat((self.player?.currentItem?.currentTime().value)!)/CGFloat((self.player?.currentItem?.currentTime().timescale)!)
                     self.currentTime = currentSecond
@@ -267,19 +275,19 @@ open class QuickPlayer: NSObject {
 extension QuickPlayer: QuickPlayerResourceManagerDelegate {
     
     public func resourceManagerRequestResponsed(manager: QuickPlayerResourceManager, videoLength: Int64) {
-        
+        delegate?.playerChangedStatus!(status: .ReadyToPlay)
     }
     
     public func resourceManagerReceiving(manager: QuickPlayerResourceManager, progress: Float) {
-        
+        delegate?.playerChangedStatus!(status: .Buffering)
     }
     
     public func resourceManagerFinshLoading(manager: QuickPlayerResourceManager, cachePath: String) {
-        
+        delegate?.playerChangedStatus!(status: .Finished)
     }
     
     public func resourceManagerFailedLoading(manager: QuickPlayerResourceManager, error: Error) {
-        
+        delegate?.playerChangedStatus!(status: .Failed)
     }
     
 }
