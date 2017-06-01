@@ -1,8 +1,9 @@
 # QuickPlayer-Swift
 
 <a href="https://travis-ci.org/Shvier/QuickPlayer-Swift"><img src="https://travis-ci.org/Shvier/QuickPlayer-Swift.svg?branch=master"></a>
-<a href="https://raw.githubusercontent.com/Shvier/QuickPlayer-Swift/master/README.md"><img src="https://img.shields.io/packagist/l/doctrine/orm.svg"></a>
-<a href=""><img src="https://img.shields.io/badge/platform-ios-lightgray.svg"></a>
+<a href=""><img src="https://img.shields.io/cocoapods/v/QuickPlayer.svg"></a>
+<a href="https://raw.githubusercontent.com/Shvier/QuickPlayer-Swift/master/README.md"><img src="https://img.shields.io/cocoapods/l/QuickPlayer.svg"></a>
+<a href=""><img src="https://img.shields.io/cocoapods/p/QuickPlayer.svg"></a>
 
 [**中文说明**](https://github.com/Shvier/QuickPlayer-Swift/blob/master/README_zh-CN.md)
 
