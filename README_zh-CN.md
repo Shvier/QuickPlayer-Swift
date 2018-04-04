@@ -17,6 +17,38 @@
 - iOS 8.0+
 - Swift 3
 
+## 安装
+
+### CocoaPods
+
+安装[CocoaPods](http://cocoapods.org)
+
+```bash
+$ gem install cocoapods
+```
+
+编辑`Podfile`:
+
+```ruby
+source 'https://github.com/CocoaPods/Specs.git'
+platform :ios, '8.0'
+use_frameworks!
+
+target '<Your Target Name>' do
+    pod 'QuickPlayer'
+end
+```
+
+最后安装:
+
+```bash
+$ pod install
+```
+
+### 手动安装
+
+打开工程目录，编译`Aggrate`，直接使用编译完成的`framework`。
+
 ## 使用方法
 
 1. 初始化播放器  
