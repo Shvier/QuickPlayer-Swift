@@ -19,10 +19,9 @@ class ViewController: UIViewController {
         // Do any additional setup after loading the view, typically from a nib.
         player = QuickPlayer(frame: view.frame)
         view.addSubview(player.playerView)
-        player.startPlay(videoUrl: URL(string: "http://o4saor8w2.qnssl.com/89MB.mp4")!)
-        player.startPlay(videoUrl: URL(fileURLWithPath: Bundle.main.path(forResource: "test", ofType: "m4v")!))
+        player.startPlay(videoUrl: URL(string: "https://www.videvo.net/videvo_files/converted/2013_06/videos/OldFashionedFilmLeaderCountdownVidevo.mov22394.mp4")!)
         DispatchQueue.main.asyncAfter(deadline: .now() + 10) { [unowned self] in
-            self.player.replaceCurrentItem(coverUrl: nil, videoUrl: URL(fileURLWithPath: Bundle.main.path(forResource: "test", ofType: "m4v")!))
+            self.player.replaceCurrentItem(coverUrl: nil, videoUrl: URL(string: "https://www.videvo.net/videvo_files/converted/2014_08/videos/Earth_Zoom_In.mov35908.mp4")!)
         }
     }
 

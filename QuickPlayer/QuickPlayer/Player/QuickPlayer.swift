@@ -12,7 +12,7 @@ import AVFoundation
 open class QuickPlayer: NSObject {
 
     // AVPlayer
-    private(set) public var player: AVPlayer?
+    @objc private(set) public var player: AVPlayer?
     // video current play time
     private(set) public var currentTime: CGFloat = 0.0
     // view rendering video

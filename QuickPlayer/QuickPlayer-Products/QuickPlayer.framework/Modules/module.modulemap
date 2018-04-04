@@ -7,4 +7,5 @@ framework module QuickPlayer {
 
 module QuickPlayer.Swift {
     header "QuickPlayer-Swift.h"
+    requires objc
 }
