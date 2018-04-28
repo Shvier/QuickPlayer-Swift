@@ -11,12 +11,12 @@
 
 - 基于AVPlayer，较好的性能表现。
 - 边下边播，自带缓存功能，可自定义缓存目录。
-- 使用URLSession和Swift 3。
+- 使用URLSession和Swift 4。
 
 ## 需求
 
 - iOS 8.1+
-- Swift 3
+- Swift 4
 
 ## 安装
 
@@ -32,7 +32,7 @@ $ gem install cocoapods
 
 ```ruby
 source 'https://github.com/CocoaPods/Specs.git'
-platform :ios, '8.0'
+platform :ios, '8.1'
 use_frameworks!
 
 target '<Your Target Name>' do

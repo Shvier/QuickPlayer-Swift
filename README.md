@@ -11,7 +11,7 @@
 
 - Based on AVPlayer, the performance is not bad.
 - Stream caching player, just customize your own path to cache video.
-- Use URLSession and Swift 3.
+- Use URLSession and Swift 4.
 
 ## Requirements
 
@@ -32,7 +32,7 @@ To integrate QuickPlayer into your Xcode project using CocoaPods, specify it in 
 
 ```ruby
 source 'https://github.com/CocoaPods/Specs.git'
-platform :ios, '8.0'
+platform :ios, '8.1'
 use_frameworks!
 
 target '<Your Target Name>' do
