@@ -1,9 +1,9 @@
-language: objective-c
-os: osx
-osx_image: xcode8.3
+language: swift
+os: ios
+osx_image: xcode9.3
 xcode_project: QuickPlayer/QuickPlayer.xcodeproj 
 xcode_scheme: QuickPlayer
 
 script:
-- xcodebuild clean build test -project QuickPlayer/QuickPlayer.xcodeproj -scheme QuickPlayer -destination 'platform=iOS Simulator,name=iPhone 7,OS=10.3'
+- xcodebuild clean build test -project QuickPlayer/QuickPlayer.xcodeproj -scheme QuickPlayer -sdk iphonesimulator ONLY_ACTIVE_ARCH=NO'
 
