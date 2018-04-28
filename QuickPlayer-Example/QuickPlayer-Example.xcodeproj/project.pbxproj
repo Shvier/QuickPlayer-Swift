@@ -473,7 +473,7 @@
 					"\"$(SRCROOT)/../QuickPlayer/QuickPlayer\"",
 				);
 				INFOPLIST_FILE = "QuickPlayer-Example/Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.Shvier.QuickPlayer-Example";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -493,7 +493,7 @@
 					"\"$(SRCROOT)/../QuickPlayer/QuickPlayer\"",
 				);
 				INFOPLIST_FILE = "QuickPlayer-Example/Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.Shvier.QuickPlayer-Example";
 				PRODUCT_NAME = "$(TARGET_NAME)";
