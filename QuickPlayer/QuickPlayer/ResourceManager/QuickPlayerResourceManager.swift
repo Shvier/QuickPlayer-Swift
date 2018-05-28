@@ -67,9 +67,9 @@ open class QuickPlayerResourceManager: NSObject {
     }
     
     func handleFile() {
-        tempPath = QuickCacheHandle.tempFilePath(filename: filename)
-        cachePath = QuickCacheHandle.cacheFilePath(filename: filename)
-        let _ = QuickCacheHandle.createTempFile(filename: filename)
+        tempPath = QuickCacheManager.tempFilePath(filename: filename)
+        cachePath = QuickCacheManager.cacheFilePath(filename: filename)
+        let _ = QuickCacheManager.createTempFile(filename: filename)
         startRequest()
     }
 
@@ -98,7 +98,7 @@ extension QuickPlayerResourceManager: URLSessionDataDelegate {
     }
     
     public func urlSession(_ session: URLSession, dataTask: URLSessionDataTask, didReceive data: Data) {
-        QuickCacheHandle.writeTempFile(data: data, filename: filename!)
+        QuickCacheManager.writeTempFile(data: data, filename: filename!)
         currentLength = currentLength + data.count
         let progress: Float = Float(currentLength) / Float(totalLength)
         delegate.resourceManagerReceiving(manager: self, progress: progress)
@@ -106,13 +106,13 @@ extension QuickPlayerResourceManager: URLSessionDataDelegate {
     
     public func urlSession(_ session: URLSession, task: URLSessionTask, didCompleteWithError error: Error?) {
         if error == nil { // Download Completed
-            if (QuickCacheHandle.cacheFileExists(filename: filename!) != nil) {
-                QuickCacheHandle.clearCacheFile(filename: filename!)
+            if (QuickCacheManager.cacheFileExists(filename: filename!) != nil) {
+                QuickCacheManager.clearCacheFile(filename: filename!)
             }
             
-            QuickCacheHandle.cacheTempFile(filename: filename!)
-            QuickCacheHandle.clearTempFile(filename: filename!)
-            delegate.resourceManagerFinshLoading(manager: self, cachePath: QuickCacheHandle.cacheFilePath(filename: filename!))
+            QuickCacheManager.cacheTempFile(filename: filename!)
+            QuickCacheManager.clearTempFile(filename: filename!)
+            delegate.resourceManagerFinshLoading(manager: self, cachePath: QuickCacheManager.cacheFilePath(filename: filename!))
         } else {
             delegate.resourceManagerFailedLoading(manager: self, error: error!)
         }

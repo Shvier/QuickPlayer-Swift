@@ -1,5 +1,5 @@
 //
-//  QuickCacheHandle.swift
+//  QuickCacheManager.swift
 //  QuickPlayer
 //
 //  Created by Shvier on 12/04/2017.
@@ -11,13 +11,13 @@ import UIKit
 // default cache path: /Library/Caches/com.Shvier.QuickPlayer/xxx.mp4
 // default temp file path: /Library/Caches/com.Shvier.QuickPlayer/xxx.tmp
 
-public class QuickCacheHandle: NSObject {
+public class QuickCacheManager: NSObject {
     
     static let fileManager = FileManager.default
     static var cachePath: String = QuickPlayerManager.sharedInstance.cachePath
     
     static open func createTempFile(filename: String) -> Bool {
-        let filePath = QuickCacheHandle.tempFilePath(filename: filename)
+        let filePath = QuickCacheManager.tempFilePath(filename: filename)
         if fileManager.fileExists(atPath: filePath) {
             do {
                 try fileManager.removeItem(atPath: filePath)
@@ -29,20 +29,20 @@ public class QuickCacheHandle: NSObject {
     }
     
     static open func writeTempFile(data: Data, filename: String) {
-        let fileHandle = FileHandle(forWritingAtPath: QuickCacheHandle.tempFilePath(filename: filename))
+        let fileHandle = FileHandle(forWritingAtPath: QuickCacheManager.tempFilePath(filename: filename))
         fileHandle?.seekToEndOfFile()
         fileHandle?.write(data)
     }
     
     static open func readTempFileData(offset: UInt64, length: UInt64, filename: String) -> Data {
-        let fileHandle = FileHandle(forReadingAtPath: QuickCacheHandle.tempFilePath(filename: filename))
+        let fileHandle = FileHandle(forReadingAtPath: QuickCacheManager.tempFilePath(filename: filename))
         fileHandle?.seek(toFileOffset: offset)
         return (fileHandle?.readData(ofLength: Int(length)))!
     }
     
     static open func cacheTempFile(filename: String) {
         do {
-            try fileManager.copyItem(atPath: QuickCacheHandle.tempFilePath(filename: filename), toPath: QuickCacheHandle.cacheFilePath(filename: filename))
+            try fileManager.copyItem(atPath: QuickCacheManager.tempFilePath(filename: filename), toPath: QuickCacheManager.cacheFilePath(filename: filename))
             print("cache file success: \(cacheFilePath)")
         } catch let error {
             print("cache file error: \(error)")
@@ -50,7 +50,7 @@ public class QuickCacheHandle: NSObject {
     }
     
     static open func cacheFileExists(filename: String) -> String? {
-        let cacheFilePath = "\(QuickCacheHandle.cacheFilePath(filename: filename))"
+        let cacheFilePath = "\(QuickCacheManager.cacheFilePath(filename: filename))"
         if fileManager.fileExists(atPath: cacheFilePath) {
             print("cache found: \(cacheFilePath)")
             return cacheFilePath
@@ -59,11 +59,11 @@ public class QuickCacheHandle: NSObject {
     }
     
     static open func tempFilePath(filename: String) -> String {
-        return "\(QuickCacheHandle.cacheFolderPath())/\(filename).tmp"
+        return "\(QuickCacheManager.cacheFolderPath())/\(filename).tmp"
     }
     
     static open func cacheFilePath(filename: String) -> String {
-        return "\(QuickCacheHandle.cacheFolderPath())/\(filename)"
+        return "\(QuickCacheManager.cacheFolderPath())/\(filename)"
     }
     
     static open func cacheFolderPath() -> String {
@@ -80,7 +80,7 @@ public class QuickCacheHandle: NSObject {
     
     static open func clearCache() {
         do {
-            try fileManager.removeItem(atPath: QuickCacheHandle.cacheFolderPath())
+            try fileManager.removeItem(atPath: QuickCacheManager.cacheFolderPath())
         } catch let error {
             print("clear cache error: \(error)")
         }
@@ -88,7 +88,7 @@ public class QuickCacheHandle: NSObject {
     
     static open func clearCacheFile(filename: String) {
         do {
-            try fileManager.removeItem(atPath: QuickCacheHandle.cacheFilePath(filename: filename))
+            try fileManager.removeItem(atPath: QuickCacheManager.cacheFilePath(filename: filename))
         } catch let error {
             print("clear \(filename) cache error: \(error)")
         }
@@ -96,7 +96,7 @@ public class QuickCacheHandle: NSObject {
     
     static open func clearTempFile(filename: String) {
         do {
-            try fileManager.removeItem(atPath: QuickCacheHandle.tempFilePath(filename: filename))
+            try fileManager.removeItem(atPath: QuickCacheManager.tempFilePath(filename: filename))
         } catch let error {
             print("clear \(filename) cache error: \(error)")
         }

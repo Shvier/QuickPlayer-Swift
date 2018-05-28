@@ -76,7 +76,7 @@ open class QuickPlayer: NSObject {
         self.videoUrl = videoUrl
         self.filename = videoUrl.path.components(separatedBy: "/").last
         if videoUrl.absoluteString.hasPrefix("http") {
-            let cacheFilePath = QuickCacheHandle.cacheFileExists(filename: filename!)
+            let cacheFilePath = QuickCacheManager.cacheFileExists(filename: filename!)
             if cacheFilePath != nil {
                 let url = URL(fileURLWithPath: cacheFilePath!)
                 currentItem = AVPlayerItem(url: url)
