@@ -29,6 +29,8 @@
 		C0300DF31E8EA98600029B8F /* QuickPlayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0300DF21E8EA98600029B8F /* QuickPlayer.swift */; };
 		C0333A361ED9B76300F62D11 /* QuickPlayerResourceManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0333A351ED9B76300F62D11 /* QuickPlayerResourceManager.swift */; };
 		C0333A381ED9B79B00F62D11 /* QuickPlayerResourceManagerProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0333A371ED9B79B00F62D11 /* QuickPlayerResourceManagerProtocol.swift */; };
+		C0464DF020BBE88F0061976B /* QuickPlayerItemCacheTask.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0464DEF20BBE88F0061976B /* QuickPlayerItemCacheTask.swift */; };
+		C0464DF320BBE96C0061976B /* QuickPlayerItemCacheFile.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0464DF220BBE96C0061976B /* QuickPlayerItemCacheFile.swift */; };
 		C07A28001EAE4E920023D910 /* QuickPlayerManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C07A27FF1EAE4E920023D910 /* QuickPlayerManager.swift */; };
 		C0D3C2EF1E8EBA6E00F0241D /* QuickPlayerProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0D3C2EE1E8EBA6E00F0241D /* QuickPlayerProtocol.swift */; };
 /* End PBXBuildFile section */
@@ -55,6 +57,8 @@
 		C0300DF21E8EA98600029B8F /* QuickPlayer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QuickPlayer.swift; sourceTree = "<group>"; };
 		C0333A351ED9B76300F62D11 /* QuickPlayerResourceManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QuickPlayerResourceManager.swift; sourceTree = "<group>"; };
 		C0333A371ED9B79B00F62D11 /* QuickPlayerResourceManagerProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QuickPlayerResourceManagerProtocol.swift; sourceTree = "<group>"; };
+		C0464DEF20BBE88F0061976B /* QuickPlayerItemCacheTask.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuickPlayerItemCacheTask.swift; sourceTree = "<group>"; };
+		C0464DF220BBE96C0061976B /* QuickPlayerItemCacheFile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuickPlayerItemCacheFile.swift; sourceTree = "<group>"; };
 		C07A27FF1EAE4E920023D910 /* QuickPlayerManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QuickPlayerManager.swift; sourceTree = "<group>"; };
 		C0D3C2EE1E8EBA6E00F0241D /* QuickPlayerProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QuickPlayerProtocol.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -81,7 +85,9 @@
 		C00109351E9E186400FE839B /* Cache */ = {
 			isa = PBXGroup;
 			children = (
-				C001093B1E9E18AB00FE839B /* QuickCacheManager.swift */,
+				C0464DF120BBE9560061976B /* CacheFile */,
+				C0464DEE20BBE8570061976B /* CacheTask */,
+				C0464DED20BBE8520061976B /* Manager */,
 			);
 			path = Cache;
 			sourceTree = "<group>";
@@ -151,6 +157,30 @@
 				C0D3C2EE1E8EBA6E00F0241D /* QuickPlayerProtocol.swift */,
 			);
 			path = Player;
+			sourceTree = "<group>";
+		};
+		C0464DED20BBE8520061976B /* Manager */ = {
+			isa = PBXGroup;
+			children = (
+				C001093B1E9E18AB00FE839B /* QuickCacheManager.swift */,
+			);
+			path = Manager;
+			sourceTree = "<group>";
+		};
+		C0464DEE20BBE8570061976B /* CacheTask */ = {
+			isa = PBXGroup;
+			children = (
+				C0464DEF20BBE88F0061976B /* QuickPlayerItemCacheTask.swift */,
+			);
+			path = CacheTask;
+			sourceTree = "<group>";
+		};
+		C0464DF120BBE9560061976B /* CacheFile */ = {
+			isa = PBXGroup;
+			children = (
+				C0464DF220BBE96C0061976B /* QuickPlayerItemCacheFile.swift */,
+			);
+			path = CacheFile;
 			sourceTree = "<group>";
 		};
 		C07A27FE1EAE4E670023D910 /* PlayerManager */ = {
@@ -297,7 +327,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C0464DF320BBE96C0061976B /* QuickPlayerItemCacheFile.swift in Sources */,
 				C0333A381ED9B79B00F62D11 /* QuickPlayerResourceManagerProtocol.swift in Sources */,
+				C0464DF020BBE88F0061976B /* QuickPlayerItemCacheTask.swift in Sources */,
 				C001093C1E9E18AB00FE839B /* QuickCacheManager.swift in Sources */,
 				C00109401E9E192500FE839B /* URL+Extension.swift in Sources */,
 				C0300DF31E8EA98600029B8F /* QuickPlayer.swift in Sources */,
