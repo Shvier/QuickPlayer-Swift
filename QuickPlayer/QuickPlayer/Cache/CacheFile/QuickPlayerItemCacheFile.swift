@@ -9,5 +9,20 @@
 import UIKit
 
 class QuickPlayerItemCacheFile: NSObject {
+    
+    var cacheFilePath: String
+    var indexFilePath: String
+    var fileLength: UInt
+    var readOffset: UInt
+    var responseHeader: [String: String]
+    var isFinished: Bool
+    var isEOF: Bool
+    var isFileLengthValid: Bool
+    var cachedDataBound: UInt
+    
+    // MARK: Constructor
+    init(_ cacheFilePath: String) {
+        
+    }
 
 }
