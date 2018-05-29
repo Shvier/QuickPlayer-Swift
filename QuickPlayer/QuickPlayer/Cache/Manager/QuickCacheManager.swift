@@ -14,7 +14,53 @@ import UIKit
 public class QuickCacheManager: NSObject {
     
     static let fileManager = FileManager.default
-    static var cachePath: String = QuickPlayerManager.sharedInstance.cachePath
+    static var cachePath: String = {
+        return NSHomeDirectory().appending("/Library/Caches/\(Bundle.main.bundleIdentifier!)")
+    }()
+    
+    static open func getOrCreateCacheFile(_ fileName: String, _ fileExtension: String? = "mp4") -> (String, Bool) {
+        let filePath = getCacheFilePath(fileName, fileExtension)
+        let cacheFileExisted = fileManager.fileExists(atPath: filePath)
+        var successed = true
+        if !cacheFileExisted {
+            successed = createFile(filePath)
+        }
+        return (filePath, successed)
+    }
+    
+    static open func getCacheFilePath(_ fileName: String, _ fileExtension: String? = "mp4") -> String {
+        return "\(cachePath)/\(fileName)/.\(fileExtension ?? "mp4")"
+    }
+    
+    static open func createFile(_ filePath: String) -> Bool {
+        let _ = getOrCreateCacheFolderPath()
+        let successed = fileManager.createFile(atPath: filePath, contents: nil, attributes: nil)
+        return successed
+    }
+    
+    static open func getOrCreateCacheFolderPath() -> String {
+        let isDirectory = UnsafeMutablePointer<ObjCBool>.allocate(capacity: 1)
+        if !fileManager.fileExists(atPath: cachePath, isDirectory: isDirectory) {
+            do {
+                try fileManager.createDirectory(atPath: cachePath, withIntermediateDirectories: true, attributes: nil)
+            } catch let error {
+                assert(false, error.localizedDescription)
+            }
+        }
+        return cachePath
+    }
+    
+    static open func cacheFolderPath() -> String {
+        let isDirectory = UnsafeMutablePointer<ObjCBool>.allocate(capacity: 1)
+        if !fileManager.fileExists(atPath: cachePath, isDirectory: isDirectory) {
+            do {
+                try fileManager.createDirectory(atPath: cachePath, withIntermediateDirectories: true, attributes: nil)
+            } catch let error {
+                assert(false, error.localizedDescription)
+            }
+        }
+        return cachePath
+    }
     
     static open func createTempFile(filename: String) -> Bool {
         let filePath = QuickCacheManager.tempFilePath(filename: filename)
@@ -64,18 +110,6 @@ public class QuickCacheManager: NSObject {
     
     static open func cacheFilePath(filename: String) -> String {
         return "\(QuickCacheManager.cacheFolderPath())/\(filename)"
-    }
-    
-    static open func cacheFolderPath() -> String {
-        let isDirectory = UnsafeMutablePointer<ObjCBool>.allocate(capacity: 1)
-        if !fileManager.fileExists(atPath: cachePath, isDirectory: isDirectory) {
-            do {
-                try fileManager.createDirectory(atPath: cachePath, withIntermediateDirectories: true, attributes: nil)
-            } catch let error {
-                print("create cache folder error: \(error)")
-            }
-        }
-        return cachePath
     }
     
     static open func clearCache() {
