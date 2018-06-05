@@ -20,7 +20,7 @@ class QuickPlayerItemCacheTask: Operation {
     }
 
     // MARK: Constructor
-    init(_ cacheFile: QuickPlayerItemCacheFile, _ loadingRequest: AVAssetResourceLoadingRequest, _ range: NSRange) {
+    init(cacheFile: QuickPlayerItemCacheFile, loadingRequest: AVAssetResourceLoadingRequest, range: NSRange) {
         self.cacheFile = cacheFile
         self.loadingRequest = loadingRequest
         self.range = range

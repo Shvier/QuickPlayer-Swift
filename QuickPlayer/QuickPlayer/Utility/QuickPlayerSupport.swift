@@ -32,7 +32,7 @@ class QuickPlayerSupport: NSObject {
         return ((range.location != NSNotFound) && (range.length > 0) && range.length != Int.max)
     }
     
-    static func convertNSRangeToHTTPContentRange(_ range: NSRange, _ length: UInt) -> String? {
+    static func convertNSRangeToHTTPContentRange(range: NSRange, length: UInt) -> String? {
         if validByteRange(range) {
             var start = range.location
             var end = NSMaxRange(range) - 1

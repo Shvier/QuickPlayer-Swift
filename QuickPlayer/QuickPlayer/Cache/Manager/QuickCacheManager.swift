@@ -18,21 +18,21 @@ public class QuickCacheManager: NSObject {
         return NSHomeDirectory().appending("/Library/Caches/\(BundleIdentifier)")
     }()
     
-    static open func getOrCreateCacheFile(_ fileName: String, _ fileExtension: String? = "mp4") -> (String, Bool) {
-        let filePath = getCacheFilePath(fileName, fileExtension)
+    static open func getOrCreateCacheFile(fileName: String, fileExtension: String? = "mp4") -> (String, Bool) {
+        let filePath = getCacheFilePath(fileName: fileName, fileExtension: fileExtension)
         let cacheFileExisted = fileManager.fileExists(atPath: filePath)
         var successed = true
         if !cacheFileExisted {
-            successed = createFile(filePath)
+            successed = createFile(filePath: filePath)
         }
         return (filePath, successed)
     }
     
-    static open func getCacheFilePath(_ fileName: String, _ fileExtension: String? = "mp4") -> String {
+    static open func getCacheFilePath(fileName: String, fileExtension: String? = "mp4") -> String {
         return "\(cachePath)/\(fileName)/.\(fileExtension ?? "mp4")"
     }
     
-    static open func createFile(_ filePath: String) -> Bool {
+    static open func createFile(filePath: String) -> Bool {
         let _ = getOrCreateCacheFolderPath()
         let successed = fileManager.createFile(atPath: filePath, contents: nil, attributes: nil)
         return successed

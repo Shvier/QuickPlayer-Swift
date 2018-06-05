@@ -19,8 +19,8 @@ class QuickPlayerAssetResourceLoader: NSObject {
     var operationQueue: OperationQueue
     
     // MARK: - Constructor
-    init(_ fileName: String, _ fileExtension: String? = DefaultCacheFileExtension) {
-        itemCache = QuickPlayerItemCacheFile(fileName, fileExtension)
+    init(fileName: String, fileExtension: String? = DefaultCacheFileExtension) {
+        itemCache = QuickPlayerItemCacheFile(cacheFileName: fileName, fileExtension: fileExtension)
         self.pendingRequests = [AVAssetResourceLoadingRequest]()
         self.operationQueue = OperationQueue()
         self.operationQueue.maxConcurrentOperationCount = 1
@@ -44,7 +44,7 @@ class QuickPlayerAssetResourceLoader: NSObject {
             var responseHeader = itemCache.responseHeader!
             let supportRange = responseHeader.keys.contains(HTTPContentRangeKey)
             if supportRange && QuickPlayerSupport.validByteRange(currentDataRange) {
-                responseHeader[HTTPContentRangeKey] = QuickPlayerSupport.convertNSRangeToHTTPContentRange(currentDataRange, itemCache.fileLength)
+                responseHeader[HTTPContentRangeKey] = QuickPlayerSupport.convertNSRangeToHTTPContentRange(range: currentDataRange, length: itemCache.fileLength)
             } else {
                 responseHeader.removeValue(forKey: HTTPContentRangeKey)
             }
@@ -69,21 +69,21 @@ class QuickPlayerAssetResourceLoader: NSObject {
         }
     }
     
-    func cancelCurrentRequest(_ completeCurrentRequest: Bool) {
+    func cancelCurrentRequest(shouldComplete completeCurrentRequest: Bool) {
         operationQueue.cancelAllOperations()
         if completeCurrentRequest {
             guard let wrappedRequest = currentRequest else {
                 return
             }
             if wrappedRequest.isFinished {
-                finishCurrentRequest(NSError(domain: NSURLErrorDomain, code: NSURLErrorCancelled, userInfo: nil))
+                finishCurrentRequest(with: NSError(domain: NSURLErrorDomain, code: NSURLErrorCancelled, userInfo: nil))
             }
         } else {
             
         }
     }
     
-    func finishCurrentRequest(_ error: NSError?) {
+    func finishCurrentRequest(with error: NSError?) {
         currentRequest?.finishLoading(with: error)
         cleanCurrentRequest()
         startNextRequest()
@@ -99,7 +99,7 @@ class QuickPlayerAssetResourceLoader: NSObject {
         currentDataRange = InvalidRange
     }
     
-    func addTask(_ range: NSRange, _ cached: Bool) {
+    func addTask(withRange range: NSRange, shouldCache cached: Bool) {
         
     }
     
@@ -114,7 +114,7 @@ class QuickPlayerAssetResourceLoader: NSObject {
 extension QuickPlayerAssetResourceLoader: AVAssetResourceLoaderDelegate {
     
     func resourceLoader(_ resourceLoader: AVAssetResourceLoader, shouldWaitForLoadingOfRequestedResource loadingRequest: AVAssetResourceLoadingRequest) -> Bool {
-        cancelCurrentRequest(true)
+        cancelCurrentRequest(shouldComplete: true)
         pendingRequests.append(loadingRequest)
         startNextRequest()
         return true
@@ -122,7 +122,7 @@ extension QuickPlayerAssetResourceLoader: AVAssetResourceLoaderDelegate {
     
     func resourceLoader(_ resourceLoader: AVAssetResourceLoader, didCancel loadingRequest: AVAssetResourceLoadingRequest) {
         if currentRequest == loadingRequest {
-            cancelCurrentRequest(false)
+            cancelCurrentRequest(shouldComplete: false)
         } else {
             pendingRequests.removeObject(loadingRequest)
         }

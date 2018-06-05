@@ -25,9 +25,9 @@ class QuickPlayerItemCacheFile: NSObject {
     var writeFileHandle: FileHandle!
     
     // MARK: Constructor
-    init(_ cacheFileName: String, _ fileExtension: String? = "mp4") {
-        let cacheFileInfo = QuickCacheManager.getOrCreateCacheFile(cacheFileName, fileExtension)
-        let serializationFileInfo = QuickCacheManager.getOrCreateCacheFile(cacheFileName, SerializationFileExtension)
+    init(cacheFileName: String, fileExtension: String? = "mp4") {
+        let cacheFileInfo = QuickCacheManager.getOrCreateCacheFile(fileName: cacheFileName, fileExtension: fileExtension)
+        let serializationFileInfo = QuickCacheManager.getOrCreateCacheFile(fileName: cacheFileName, fileExtension: SerializationFileExtension)
         if !cacheFileInfo.1 && serializationFileInfo.1 {
             return
         }
