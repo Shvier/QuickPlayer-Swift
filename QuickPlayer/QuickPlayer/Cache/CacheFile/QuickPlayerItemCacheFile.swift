@@ -10,8 +10,6 @@ import UIKit
 
 class QuickPlayerItemCacheFile: NSObject {
     
-    static let SerializationFileExtension = ".cache"
-    
     var cacheFilePath: String!
     var serializationFilePath: String!
     var fileLength: UInt!
@@ -29,7 +27,7 @@ class QuickPlayerItemCacheFile: NSObject {
     // MARK: Constructor
     init(_ cacheFileName: String, _ fileExtension: String? = "mp4") {
         let cacheFileInfo = QuickCacheManager.getOrCreateCacheFile(cacheFileName, fileExtension)
-        let serializationFileInfo = QuickCacheManager.getOrCreateCacheFile(cacheFileName, QuickPlayerItemCacheFile.SerializationFileExtension)
+        let serializationFileInfo = QuickCacheManager.getOrCreateCacheFile(cacheFileName, SerializationFileExtension)
         if !cacheFileInfo.1 && serializationFileInfo.1 {
             return
         }

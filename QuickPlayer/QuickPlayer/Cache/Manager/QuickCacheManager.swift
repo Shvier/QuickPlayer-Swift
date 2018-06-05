@@ -15,7 +15,7 @@ public class QuickCacheManager: NSObject {
     
     static let fileManager = FileManager.default
     static var cachePath: String = {
-        return NSHomeDirectory().appending("/Library/Caches/\(Bundle.main.bundleIdentifier!)")
+        return NSHomeDirectory().appending("/Library/Caches/\(BundleIdentifier)")
     }()
     
     static open func getOrCreateCacheFile(_ fileName: String, _ fileExtension: String? = "mp4") -> (String, Bool) {

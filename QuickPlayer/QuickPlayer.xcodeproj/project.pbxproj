@@ -31,6 +31,11 @@
 		C0333A381ED9B79B00F62D11 /* QuickPlayerResourceManagerProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0333A371ED9B79B00F62D11 /* QuickPlayerResourceManagerProtocol.swift */; };
 		C0464DF020BBE88F0061976B /* QuickPlayerItemCacheTask.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0464DEF20BBE88F0061976B /* QuickPlayerItemCacheTask.swift */; };
 		C0464DF320BBE96C0061976B /* QuickPlayerItemCacheFile.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0464DF220BBE96C0061976B /* QuickPlayerItemCacheFile.swift */; };
+		C0613A6220BD0412003377D1 /* QuickPlayerAssetResourceLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0613A6120BD0412003377D1 /* QuickPlayerAssetResourceLoader.swift */; };
+		C0613A6520BD08D2003377D1 /* QuickPlayerSupport.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0613A6420BD08D2003377D1 /* QuickPlayerSupport.swift */; };
+		C0613A6720BD38A6003377D1 /* AVAssetResourceLoadingRequest+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0613A6620BD38A6003377D1 /* AVAssetResourceLoadingRequest+Extension.swift */; };
+		C0613A6920BD3936003377D1 /* HTTPURLResponse+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0613A6820BD3936003377D1 /* HTTPURLResponse+Extension.swift */; };
+		C0613A6B20BD3C67003377D1 /* Array+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0613A6A20BD3C67003377D1 /* Array+Extension.swift */; };
 		C07A28001EAE4E920023D910 /* QuickPlayerManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C07A27FF1EAE4E920023D910 /* QuickPlayerManager.swift */; };
 		C0D3C2EF1E8EBA6E00F0241D /* QuickPlayerProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0D3C2EE1E8EBA6E00F0241D /* QuickPlayerProtocol.swift */; };
 /* End PBXBuildFile section */
@@ -59,6 +64,11 @@
 		C0333A371ED9B79B00F62D11 /* QuickPlayerResourceManagerProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QuickPlayerResourceManagerProtocol.swift; sourceTree = "<group>"; };
 		C0464DEF20BBE88F0061976B /* QuickPlayerItemCacheTask.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuickPlayerItemCacheTask.swift; sourceTree = "<group>"; };
 		C0464DF220BBE96C0061976B /* QuickPlayerItemCacheFile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuickPlayerItemCacheFile.swift; sourceTree = "<group>"; };
+		C0613A6120BD0412003377D1 /* QuickPlayerAssetResourceLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuickPlayerAssetResourceLoader.swift; sourceTree = "<group>"; };
+		C0613A6420BD08D2003377D1 /* QuickPlayerSupport.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuickPlayerSupport.swift; sourceTree = "<group>"; };
+		C0613A6620BD38A6003377D1 /* AVAssetResourceLoadingRequest+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AVAssetResourceLoadingRequest+Extension.swift"; sourceTree = "<group>"; };
+		C0613A6820BD3936003377D1 /* HTTPURLResponse+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "HTTPURLResponse+Extension.swift"; sourceTree = "<group>"; };
+		C0613A6A20BD3C67003377D1 /* Array+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Array+Extension.swift"; sourceTree = "<group>"; };
 		C07A27FF1EAE4E920023D910 /* QuickPlayerManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QuickPlayerManager.swift; sourceTree = "<group>"; };
 		C0D3C2EE1E8EBA6E00F0241D /* QuickPlayerProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QuickPlayerProtocol.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -97,6 +107,7 @@
 			children = (
 				C0333A351ED9B76300F62D11 /* QuickPlayerResourceManager.swift */,
 				C0333A371ED9B79B00F62D11 /* QuickPlayerResourceManagerProtocol.swift */,
+				C0613A6120BD0412003377D1 /* QuickPlayerAssetResourceLoader.swift */,
 			);
 			path = ResourceManager;
 			sourceTree = "<group>";
@@ -105,6 +116,9 @@
 			isa = PBXGroup;
 			children = (
 				C001093F1E9E192500FE839B /* URL+Extension.swift */,
+				C0613A6620BD38A6003377D1 /* AVAssetResourceLoadingRequest+Extension.swift */,
+				C0613A6820BD3936003377D1 /* HTTPURLResponse+Extension.swift */,
+				C0613A6A20BD3C67003377D1 /* Array+Extension.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -130,6 +144,7 @@
 		C0300DD81E8EA11D00029B8F /* QuickPlayer */ = {
 			isa = PBXGroup;
 			children = (
+				C0613A6320BD08A1003377D1 /* Utility */,
 				C07A27FE1EAE4E670023D910 /* PlayerManager */,
 				C001093E1E9E190600FE839B /* Extension */,
 				C00109351E9E186400FE839B /* Cache */,
@@ -181,6 +196,14 @@
 				C0464DF220BBE96C0061976B /* QuickPlayerItemCacheFile.swift */,
 			);
 			path = CacheFile;
+			sourceTree = "<group>";
+		};
+		C0613A6320BD08A1003377D1 /* Utility */ = {
+			isa = PBXGroup;
+			children = (
+				C0613A6420BD08D2003377D1 /* QuickPlayerSupport.swift */,
+			);
+			path = Utility;
 			sourceTree = "<group>";
 		};
 		C07A27FE1EAE4E670023D910 /* PlayerManager */ = {
@@ -327,13 +350,18 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C0613A6920BD3936003377D1 /* HTTPURLResponse+Extension.swift in Sources */,
 				C0464DF320BBE96C0061976B /* QuickPlayerItemCacheFile.swift in Sources */,
 				C0333A381ED9B79B00F62D11 /* QuickPlayerResourceManagerProtocol.swift in Sources */,
+				C0613A6220BD0412003377D1 /* QuickPlayerAssetResourceLoader.swift in Sources */,
 				C0464DF020BBE88F0061976B /* QuickPlayerItemCacheTask.swift in Sources */,
 				C001093C1E9E18AB00FE839B /* QuickCacheManager.swift in Sources */,
 				C00109401E9E192500FE839B /* URL+Extension.swift in Sources */,
+				C0613A6720BD38A6003377D1 /* AVAssetResourceLoadingRequest+Extension.swift in Sources */,
 				C0300DF31E8EA98600029B8F /* QuickPlayer.swift in Sources */,
+				C0613A6520BD08D2003377D1 /* QuickPlayerSupport.swift in Sources */,
 				C07A28001EAE4E920023D910 /* QuickPlayerManager.swift in Sources */,
+				C0613A6B20BD3C67003377D1 /* Array+Extension.swift in Sources */,
 				C0333A361ED9B76300F62D11 /* QuickPlayerResourceManager.swift in Sources */,
 				C0D3C2EF1E8EBA6E00F0241D /* QuickPlayerProtocol.swift in Sources */,
 			);
